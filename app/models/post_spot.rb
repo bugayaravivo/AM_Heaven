@@ -1,0 +1,2 @@
+class PostSpot < ApplicationRecord
+end
