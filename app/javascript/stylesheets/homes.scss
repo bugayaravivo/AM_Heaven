@@ -1,0 +1,43 @@
+// Place all the styles related to the public/homes controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: https://sass-lang.com/
+
+/* app/javascript/stylesheets/homes.css */
+
+/* ヒーローセクション */
+.hero-section {
+  height: 100vh;
+  background-image: url('https://via.placeholder.com/1920x1080'); /* ヒーローセクションの背景画像を設定 */
+  background-size: cover;
+  background-position: center;
+}
+
+.hero-content {
+  background-color: rgba(0, 0, 0, 0.5); /* 背景を暗くするためのオーバーレイ */
+  padding: 20px;
+  border-radius: 10px;
+}
+
+/* 特徴セクション */
+.feature-box {
+  padding: 20px;
+}
+
+.feature-box i {
+  color: #007bff;
+}
+
+/* レビューセクション */
+#reviews .card {
+  margin-bottom: 30px;
+}
+
+#reviews .card-img-top {
+  height: 150px;
+  object-fit: cover;
+}
+
+/* フッター */
+footer {
+  background-color: #343a40;
+}
