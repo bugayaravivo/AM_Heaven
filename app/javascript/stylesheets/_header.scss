@@ -1,0 +1,57 @@
+.header {
+  background-color: black;
+  padding: 20px 0;
+}
+
+
+.container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+
+.logo a {
+  color: gold;
+  font-size: 24px;
+  font-weight: bold;
+  text-decoration: none;
+}
+
+
+
+.navbar {
+  position: relative;
+}
+
+.menu-icon {
+  display: none;
+  font-size: 28px;
+  color: gold;
+  cursor: pointer;
+}
+
+.menu {
+  display: flex;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.menu li {
+  margin-left: 20px;
+  
+}
+
+.menu a {
+  color: gold;
+  text-decoration: none;
+  font-size: 18px;
+}
+
+
+#menu-toggle {
+  display: none;
+}
+
+

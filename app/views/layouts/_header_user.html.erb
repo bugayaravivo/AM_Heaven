@@ -1,0 +1,22 @@
+<!-- app/views/layout/_header_user.html.erb -->
+<% content_for :stylesheets do %>
+  <%= stylesheet_pack_tag '_header', media: 'all', 'data-turbolinks-track': 'reload' %>
+<% end %>
+
+<header class="header">
+  <div class= "container">
+    <div class="logo">
+      <%= link_to "AM_Heaven", root_path %>
+    </div>
+    <nav class="navbar">
+      <input type="checkbox" id="menu-toggle" ></input>
+      <label for="menu-toggle" class="menu-icon" >&#9776;</label>
+      <ul class="menu">
+        <li><%= link_to "アバウト", about_path %></li>
+        <li><%= link_to "聖地一覧", spots_path %></li>
+        <li><%= link_to "マイページ", users_path %></li>
+        <li><%= link_to "ログアウト", destroy_user_session_path, method: :delete %></li>
+      </ul>
+    </nav>
+  </div>
+</header>

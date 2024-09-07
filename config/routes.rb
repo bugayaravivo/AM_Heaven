@@ -33,7 +33,7 @@ Rails.application.routes.draw do
   end
   
   # 顧客用
-# URL /customers/sign_in ...
+# URL /users/sign_in ...
 devise_for :users,skip: [:passwords], controllers: {
   registrations: "public/registrations",
   sessions: 'public/sessions'
