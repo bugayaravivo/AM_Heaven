@@ -1,2 +1,23 @@
-<h1>Public::Posts#new</h1>
-<p>Find me in app/views/public/posts/new.html.erb</p>
+<div class="container">
+  <%= form_with model: @post, url: posts_path, method: :patch do |f| %>
+  <div class="row">
+    <div class="col">
+      <%= f.text_field :title, placeholder: '聖地の名前', size: 50 %>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col">
+      <%= f.text_field :address, placeholder: '聖地の住所 ※必須ではありません' , size: 50 %>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col">
+      <%= f.text_area :body, placeholder: '行った聖地の口コミ、感想を書いてみよう', cols: 45 %>
+    </div>
+  </div><div class="row">
+    <div class="col">
+      <%= f.submit "投稿する", class: "btn btn-primary" %>
+    </div>
+  </div>
+  <% end %>
+</div>
