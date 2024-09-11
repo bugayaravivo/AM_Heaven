@@ -2,16 +2,16 @@ class Public::UsersController < ApplicationController
   
   
   def show
-    @user = current_user
-    @posts = current_user.posts
+    @user = User.find(params[:id])
+    @posts = @user.posts
   end
 
   def edit
-    @user = current_user
+    @user = User.find(params[:id])
   end
   
   def update
-    user = current_user
+    user = User.find(params[:id])
     if user.update(user_params)
       redirect_to users_path(current_user)
     else
@@ -28,6 +28,6 @@ class Public::UsersController < ApplicationController
   private
   
   def user_params
-    params.require(:user).permit(:name, :introduction, :email, :is_active)
+    params.require(:user).permit(:name, :introduction, :email, :user_image, :is_active)
   end
 end

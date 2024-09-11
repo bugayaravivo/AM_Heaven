@@ -14,7 +14,7 @@
       <ul class="menu">
         <li><%= link_to "アバウト", about_path %></li>
         <li><%= link_to "聖地一覧", spots_path %></li>
-        <li><%= link_to "マイページ", users_path %></li>
+        <li><%= link_to "マイページ", user_path(current_user.id) %></li>
         <li><%= link_to "ログアウト", destroy_user_session_path, method: :delete %></li>
       </ul>
     </nav>

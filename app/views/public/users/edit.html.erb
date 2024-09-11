@@ -6,15 +6,15 @@
   </div>
   <div class="row mt-5">
     <div class="col d-flex justify-content-center">
-      <%= image_tag @user.get_user_image(150,150) %>
+      <%= image_tag @user.get_user_image(150,150), style: "border-radius: 50%;", width: 150, height: 150 %>
     </div>
   </div>
-  <%= form_with model: @user, url: users_information_path, method: :patch do |f| %>
+  <%= form_with model: @user, url: users_information_path(@user.id), method: :patch do |f| %>
   <div class="row mt-2">
     <div class="col-md-4 offset-md-4">
       <p>画像変更</p>
       <div>
-        <%= f.file_field :image %>
+        <%= f.file_field :user_image %>
       </div>
     </div>
   </div>
@@ -30,7 +30,7 @@
     <div class="col-md-4 offset-md-4">
       <p>profile</p>
       <div>
-        <%= f.text_area :introduction, cols: 45 %>
+        <%= f.text_area :introduction, cols: 45, rows: 8 %>
       </div>
     </div>
   </div>
