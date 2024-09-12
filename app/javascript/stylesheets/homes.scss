@@ -7,7 +7,7 @@
 /* ヒーローセクション */
 .hero-section {
   height: 100vh;
-  background-image: image-url("heaven.jpg"); /* ヒーローセクションの背景画像を設定 */
+  background-image: url("../images/heaven.jpg"); /* ヒーローセクションの背景画像を設定 */
   background-size: cover;
   background-position: center;
 }
