@@ -1,7 +1,7 @@
 class Spot < ApplicationRecord
   
   has_many :reviews, dependent: :destroy
-  has_many :post_spots, dependet: :destroy
+  has_many :post_spots, dependent: :destroy
   has_many :posts, through: :post_spots
   belongs_to :work
   
