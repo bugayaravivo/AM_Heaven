@@ -1,2 +1,53 @@
-<h1>Public::Users#show</h1>
-<p>Find me in app/views/public/users/show.html.erb</p>
+<div class="container">
+  <!-- ユーザー情報 -->
+  <div class="row my-5">
+    <div class="col d-flex flex-column align-items-center">
+      <%= image_tag @user.get_user_image(300,300), style: "border-radius: 50%; border: 5px solid gold;", width: 300, height: 300 %>
+      <h4 class="mt-3"><%= @user.name %></h4>
+      <div class="mt-3">
+        <%= link_to "投稿する", new_post_path, class: "btn btn-primary mr-3" %>
+        <%= link_to "プロフィール編集", edit_users_information_path(@user.id), class: "btn btn-success" %>
+      </div>
+    </div>
+  <!-- ステータス -->
+    <div class="col d-flex justify-content-center">
+      <div class="card p-3" style="width: 500px; background-color: #f8f9fa; border: none;">
+        <div class="card-body text-center">
+          <h5 class="card-title" style="color: #555;">投稿数</h5>
+          <div class="card-text" style="font-size: 24px; font-weight: bold;">
+            <%= @user.posts.count %>
+          </div>
+          <h5 class="card-title mt-3" style="color: #555;">プロフィール</h5>
+          <div class="card-text">
+            <%= @user.introduction %>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+  <!-- 投稿一覧 -->
+  <div class="row mt-5">
+    <div class="col">
+      <h2 style="border-bottom: 2px solid gold; padding-bottom: 10px;">投稿一覧</h2>
+    </div>
+  </div>
+  
+  <!-- 投稿の内容はここに入る -->
+  <div class="row mt-4">
+    <% @posts.each do |post| %>
+      <div class="col-md-6 mb-4">
+        <%= link_to post_path(post.id) do %>
+          <div class="card h-100" style="border: none; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);">
+              <%= image_tag post.get_post_image(400, 250), class: 'card-img-top' %>
+            <div class="card-body">
+              <h5 class="card-title" style="color: #333;"><%= post.title %></h5>
+              <p class="card-text" style="color: #666;"><%= post.body.truncate(100) %></p>
+              <p class="card-text"><small class="text-muted">投稿日: <%= post.created_at.strftime("%Y-%m-%d") %></small></p>
+            </div>
+          </div>
+        <% end %>
+      </div>
+    <% end %>
+  </div>
+</div>

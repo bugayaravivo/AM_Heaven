@@ -7,7 +7,7 @@
 /* ヒーローセクション */
 .hero-section {
   height: 100vh;
-  background-image: url('https://via.placeholder.com/1920x1080'); /* ヒーローセクションの背景画像を設定 */
+  background-image: url('../../assets/images/heaven.jpg'); /* ヒーローセクションの背景画像を設定 */
   background-size: cover;
   background-position: center;
 }
@@ -25,19 +25,4 @@
 
 .feature-box i {
   color: #007bff;
-}
-
-/* レビューセクション */
-#reviews .card {
-  margin-bottom: 30px;
-}
-
-#reviews .card-img-top {
-  height: 150px;
-  object-fit: cover;
-}
-
-/* フッター */
-footer {
-  background-color: #343a40;
 }

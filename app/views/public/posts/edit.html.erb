@@ -1,2 +1,41 @@
-<h1>Public::Posts#edit</h1>
-<p>Find me in app/views/public/posts/edit.html.erb</p>
+<div class="container">
+  <%= form_with model: @post, url: post_path(@post.id), method: :patch do |f| %>
+  <div class="row mt-5">
+    <div class="col-md-4 offset-md-3">
+      <div>
+        <p>聖地名</p>
+      </div>
+      <%= f.text_field :title, size: 70 %>
+    </div>
+  </div>
+  <div class="row mt-5">
+    <div class="col-md-4 offset-md-3">
+      <div>
+        <p>聖地の住所</p>
+      </div>
+      <%= f.text_field :address, size: 70 %>
+    </div>
+  </div>
+  <div class="row mt-5">
+    <div class="col-md-4 offset-md-3">
+      <div>
+        <p>画像変更</p>
+      </div>
+      <%= f.file_field :post_image %>
+    </div>
+  </div>
+  <div class="row mt-5">
+    <div class="col-md-4 offset-md-3">
+      <div>
+        <p>本文</p>
+      </div>
+      <%= f.text_area :body, cols: 70, rows: 15 %>
+    </div>
+  </div>
+  <div class="row mt-3">
+    <div class="col d-flex justify-content-center">
+      <%= f.submit "編集を保存", class: "btn btn-success" %>
+    </div>
+  </div>
+  <% end %>
+</div>

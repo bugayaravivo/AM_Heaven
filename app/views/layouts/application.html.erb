@@ -6,12 +6,26 @@
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
 
+    <script src="https://kit.fontawesome.com/c57ff49e58.js" crossorigin="anonymous"></script>
     <%= stylesheet_pack_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= yield :stylesheets %>
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
 
   <body>
-    <%= yield %>
+    <% if admin_signed_in? %>
+      <%= render 'layouts/header_admin' %>
+    <% elsif user_signed_in? %>
+      <%= render 'layouts/header_user' %>
+    <% else %>
+      <%= render 'layouts/header' %>
+    <% end %>
+
+    <main>
+      <%= yield %>
+    </main>
+
+    <!--footer入れる-->
+
   </body>
 </html>
