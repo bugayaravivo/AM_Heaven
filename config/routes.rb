@@ -1,8 +1,8 @@
 Rails.application.routes.draw do
-  
+
   root to: "public/homes#top"
   get 'about' => 'public/homes#about'
-  
+
   scope module: :public do
     #会員
     resources :users, path: 'users/mypage', only: [:show]
@@ -16,22 +16,22 @@ Rails.application.routes.draw do
       resources :reviews, only: [:index, :new, :create]
     end
     #スポット、スポットにレビューをネスト
-    resources :spots, only: [:index, :show] do 
+    resources :spots, only: [:index, :show] do
       resources :reviews, only: [:index, :new, :create]
-    end 
+    end
     #コメント
     resources :comments, only: [:create, :destroy]
     #レビュー
     resources :reviews, only: [:show, :edit, :update, :destroy]
-  end 
-  
+  end
+
   namespace :admin do
     resources :users, only: [:index, :show, :edit, :update]
-    resources :works, only: [:new, :index, :show, :create, :edit, :update, :destroy]
+    resources :works, only: [:index, :show, :create, :edit, :update, :destroy]
     resources :spots, only: [:new, :index, :show, :create, :edit, :update, :destroy]
     resources :reviews, only: [:index, :show, :destroy]
   end
-  
+
   # 顧客用
 # URL /users/sign_in ...
 devise_for :users,skip: [:passwords], controllers: {
