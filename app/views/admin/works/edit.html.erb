@@ -1,2 +1,49 @@
-<h1>Admin::Works#edit</h1>
-<p>Find me in app/views/admin/works/edit.html.erb</p>
+<div class="container">
+  <div class="row mt-5">
+    <div class="col">
+      <h2>作品編集画面</h2>
+    </div>
+  </div>
+  <%= form_with model: @work, url: admin_work_path(@work.id), method: :patch do |f| %>
+  <div class="row my-5">
+    <div class="col-md-4 offset-md-4">
+      <p>画像</p>
+      <div>
+        <%= image_tag @work.get_work_image(350,300) %>
+      </div>
+      <div>
+        <%= f.file_field :work_image %>
+      </div>
+    </div>
+  </div>
+  <div class="row mt-2">
+    <div class="col-md-4 offset-md-3">
+      <p>作品名</p>
+      <div>
+        <%= f.text_field :title, size: 70 %>
+      </div>
+    </div>
+  </div>
+  <div class="row mt-4">
+    <div class="col-md-4 offset-md-3">
+      <p>ジャンル</p>
+      <div>
+        <%= f.text_field :genre, size: 70 %>
+      </div>
+    </div>
+  </div>
+  <div class="row mt-4">
+    <div class="col-md-4 offset-md-3">
+      <p>作品概要</p>
+      <div>
+        <%= f.text_area :summary, cols: 75, rows: 10 %>
+      </div>
+    </div>
+  </div>
+  <div class="row mt-3">
+    <div class="col-md-4 offset-md-3">
+      <%= f.submit "編集を保存", class: "btn btn-success" %>
+    </div>
+  </div>
+  <% end %>
+</div>

@@ -7,6 +7,14 @@ class User < ApplicationRecord
   has_many :comments, dependent: :destroy
   has_many :reviews, dependent: :destroy
   
+  def user_status
+    if is_active
+      "有効"
+    else
+      "退会"
+    end 
+  end 
+  
    has_one_attached :user_image
     # 画像の表示
   def get_user_image(width, height)
