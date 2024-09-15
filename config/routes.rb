@@ -10,7 +10,9 @@ Rails.application.routes.draw do
     get 'users/unsubscribe', as: 'unsubscribe'
     patch 'users/withdraw', as: 'withdraw'
     #投稿
-    resources :posts, only: [:new, :index, :show, :create, :edit, :update, :destroy]
+    resources :posts, only: [:new, :index, :show, :create, :edit, :update, :destroy] do
+      resources :comments, only: [:create, :destroy]
+    end
     #作品、作品にレビューをネスト
     resources :works, only: [:index, :show] do
       resources :reviews, only: [:index, :new, :create]
@@ -20,7 +22,7 @@ Rails.application.routes.draw do
       resources :reviews, only: [:index, :new, :create]
     end
     #コメント
-    resources :comments, only: [:create, :destroy]
+   
     #レビュー
     resources :reviews, only: [:show, :edit, :update, :destroy]
   end
