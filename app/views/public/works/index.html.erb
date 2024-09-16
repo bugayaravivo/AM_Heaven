@@ -1,2 +1,22 @@
-<h1>Public::Works#index</h1>
-<p>Find me in app/views/public/works/index.html.erb</p>
+<h1>作品一覧</h1>
+
+<!-- 五十音リンクを作成 -->
+<div class="letters">
+  <%= link_to 'ア行', letter_works_path('ア') %> |
+  <%= link_to 'カ行', letter_works_path('カ') %> |
+  <%= link_to 'サ行', letter_works_path('サ') %> |
+  <%= link_to 'タ行', letter_works_path('タ') %> |
+  <%= link_to 'ナ行', letter_works_path('ナ') %> |
+  <%= link_to 'ハ行', letter_works_path('ハ') %> |
+  <%= link_to 'マ行', letter_works_path('マ') %> |
+  <%= link_to 'ヤ行', letter_works_path('ヤ') %> |
+  <%= link_to 'ラ行', letter_works_path('ラ') %> |
+  <%= link_to 'ワ行', letter_works_path('ワ') %>
+</div>
+
+<!-- 作品一覧表示 -->
+<ul>
+  <% @works.each do |work| %>
+    <li><%= link_to work.title, work_path(work) %></li>
+  <% end %>
+</ul>

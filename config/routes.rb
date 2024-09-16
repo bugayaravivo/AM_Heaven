@@ -16,6 +16,9 @@ Rails.application.routes.draw do
     #作品、作品にレビューをネスト
     resources :works, only: [:index, :show] do
       resources :reviews, only: [:index, :new, :create]
+      collection do
+        get 'letter/:letter', to: 'works#index', as: 'letter'
+      end
     end
     #スポット、スポットにレビューをネスト
     resources :spots, only: [:index, :show] do

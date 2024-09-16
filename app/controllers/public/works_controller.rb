@@ -1,6 +1,10 @@
 class Public::WorksController < ApplicationController
   def index
-    @works = Work.all
+    if params[:letter]
+      @works = Work.by_first_letter(params[:letter])
+    else
+      @works = Work.all
+    end 
   end
 
   def show
@@ -10,6 +14,6 @@ class Public::WorksController < ApplicationController
   private
   
   def work_params
-    params.require(:work).permit(:title, :genre, :summary, :work_image)
+    params.require(:work).permit(:title, :genre, :summary, :work_image, :title_)
   end 
 end
