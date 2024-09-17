@@ -33,7 +33,7 @@ Rails.application.routes.draw do
   namespace :admin do
     resources :users, only: [:index, :show, :edit, :update]
     resources :works, only: [:index, :show, :create, :edit, :update, :destroy]
-    resources :spots, only: [:new, :index, :show, :create, :edit, :update, :destroy]
+    resources :spots, only: [:index, :show, :create, :edit, :update, :destroy]
     resources :reviews, only: [:index, :show, :destroy]
   end
 
@@ -49,5 +49,11 @@ devise_for :users,skip: [:passwords], controllers: {
 devise_for :admin, skip: [:registrations, :passwords] ,controllers: {
   sessions: "admin/sessions"
 }
+
+# ゲストログイン用
+  devise_scope :user do
+    post "users/guest_sign_in", to: "public/sessions#guest_sign_in"
+  end
+  
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 end

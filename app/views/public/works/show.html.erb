@@ -1,2 +1,54 @@
-<h1>Public::Works#show</h1>
-<p>Find me in app/views/public/works/show.html.erb</p>
+<div class="container">
+  <div class="row mt-3">
+    <div class="col">
+      <h2>作品の詳細</h2>
+    </div>
+  </div>
+  <div class="row mt-5">
+    <div class="col">
+      <h4><%= @work.title %></h4>
+    </div>
+  </div>
+  <div class="row mt-5">
+    <div class="col d-flex justify-content-center">
+      <h4><%= image_tag @work.get_work_image(400,300) %></h4>
+    </div>
+  </div>
+  
+<!--タブの高さを調節するための記述-->
+  <style>
+    .tab-content {
+      min-height: 400px;
+    }
+  </style>
+  
+<!--タブ-->
+  <ul class="nav nav-tabs" id="mytab" role="tablist">
+    <li class="nav-item" role="presentation">
+      <a class="nav-link active" id="orverview-tab" data-bs-toggle="tab" href="#orverview" role="tab" aria-controls="orverview" aria-selected="true">概要</a>
+    </li>
+    <li class="nav-item" role="presentation">
+      <a class="nav-link" id="spot-tab" data-bs-toggle="tab" href="#spots" role="tab" aria-controls="spots" aria-selected="false">関連するスポット</a>
+    </li>
+    <li class="nav-item" role="presentation">
+      <a class="nav-link" id="review-tab" data-bs-toggle="tab" href="#reviews" role="tab" aria-controls="reviews" aria-selected="false">レビュー</a>
+    </li>
+  </ul>
+
+  <div class="tab-content" id="myTavContent">
+    <div class="tab-pane fade show active" id="orverview" role="tabpanel" aria-labelledby="orverview-tab">
+      <p class="mt-3 text-muted">ジャンル：<%= @work.genre %></p>
+      <p class="mt-4"><%= @work.summary %></p>
+    </div>
+    <div class="tab-pane fade" id="spots" role="tabpanel" aria-labelledby="spots-tab">
+      <% @spots.each do |spot| %>
+        <p><%= spot.name %></p>
+      <% end %>
+    </div>
+    <div class="tab-pane fade" id="reviews" role="tabpanel" aria-labelledby="review-tab">
+      <% @reviews.each do |review| %>
+        <p><%= review.title %></p>
+      <% end %>
+    </div>
+  </div>
+</div>

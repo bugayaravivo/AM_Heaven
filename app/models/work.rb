@@ -40,13 +40,13 @@ class Work < ApplicationRecord
       where("title_yomi LIKE ? OR title_yomi LIKE ? OR title_yomi LIKE ? OR title_yomi LIKE ? OR title_yomi LIKE ?",
             "マ%", "ミ%", "ム%", "メ%", "モ%")
     when 'ヤ'
-      where("title_yomi LIKE ? OR title_yomi LIKE ? OR title_yomi LIKE", 
+      where("title_yomi LIKE ? OR title_yomi LIKE ? OR title_yomi LIKE ?", 
             "ヤ%", "ユ%", "ヨ%")
     when 'ラ'
       where("title_yomi LIKE ? OR title_yomi LIKE ? OR title_yomi LIKE ? OR title_yomi LIKE ? OR title_yomi LIKE ?",
             "ラ%", "リ%", "ル%", "レ%", "ロ%")
     when 'ワ'
-      where("title_yomi LIKE ? OR title_yomi LIKE ? OR title_yomi LIKE ", 
+      where("title_yomi LIKE ? OR title_yomi LIKE ? OR title_yomi LIKE ?", 
             "ワ%", "ヲ%", "ン%")
     else
       all

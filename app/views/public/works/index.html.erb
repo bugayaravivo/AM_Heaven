@@ -1,22 +1,31 @@
-<h1>作品一覧</h1>
-
-<!-- 五十音リンクを作成 -->
-<div class="letters">
-  <%= link_to 'ア行', letter_works_path('ア') %> |
-  <%= link_to 'カ行', letter_works_path('カ') %> |
-  <%= link_to 'サ行', letter_works_path('サ') %> |
-  <%= link_to 'タ行', letter_works_path('タ') %> |
-  <%= link_to 'ナ行', letter_works_path('ナ') %> |
-  <%= link_to 'ハ行', letter_works_path('ハ') %> |
-  <%= link_to 'マ行', letter_works_path('マ') %> |
-  <%= link_to 'ヤ行', letter_works_path('ヤ') %> |
-  <%= link_to 'ラ行', letter_works_path('ラ') %> |
-  <%= link_to 'ワ行', letter_works_path('ワ') %>
+<div class="container">
+  <div class="row">
+    <div class="col">
+      <h1>作品一覧</h1>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col">
+      <%= link_to 'ア行', letter_works_path('ア') %> |
+      <%= link_to 'カ行', letter_works_path('カ') %> |
+      <%= link_to 'サ行', letter_works_path('サ') %> |
+      <%= link_to 'タ行', letter_works_path('タ') %> |
+      <%= link_to 'ナ行', letter_works_path('ナ') %> |
+      <%= link_to 'ハ行', letter_works_path('ハ') %> |
+      <%= link_to 'マ行', letter_works_path('マ') %> |
+      <%= link_to 'ヤ行', letter_works_path('ヤ') %> |
+      <%= link_to 'ラ行', letter_works_path('ラ') %> |
+      <%= link_to 'ワ行', letter_works_path('ワ') %> |
+      <%= link_to '全て', works_path %>
+    </div>
+  </div>
+  <div class="row mt-5">
+    <div class="col">
+      <ul class="d-flex flex-wrap">
+        <% @works.each do |work| %>
+          <li class="my-3 mr-5"><%= link_to work.title, work_path(work.id), style: "color: black;" %></li>
+        <% end %>
+      </ul>
+    </div>
+  </div>
 </div>
-
-<!-- 作品一覧表示 -->
-<ul>
-  <% @works.each do |work| %>
-    <li><%= link_to work.title, work_path(work) %></li>
-  <% end %>
-</ul>

@@ -4,36 +4,48 @@
       <h2>聖地巡礼(聖活)</h2>
     </div>
     <div class="col-md-4">
-      <p></p>
-      <p>聖活の記録や感想、口コミを残そう！</p>
+      <p class="mt-3">聖活の記録や感想、口コミを残そう！</p>
     </div>
   </div>
   <div class="row mt-5">
-    <div class="col-md-3">
-      <p>その他のコンテンツ例</p>
+    <div class="col">
+      <h5>早速あなたも投稿してみよう！</h5>
+      <% if current_user && !current_user.guest? %>
+        <p class="mt-3">新規投稿はこちら➡           <%= link_to "投稿する", new_post_path, class: "btn btn-primary"%></p>
+      <% end %>
     </div>
-    
-    <div class="col-md-8 offset-md-1">
-      <div class="row">
-        <% @posts.each do |post| %>
-          <div class="col-md-8 offset-md-2 mb-4">
-            <div class="card h-100">
-              <%= link_to post_path(post.id) do %>
-                <%= image_tag post.get_post_image(300,200), class:"card-img-top" %>
-              <% end %>
-              <div class="card-body">
-                <h5 class="card-title"><%= post.title %></h5>
-                <p class="card-text"><%= post.body.truncate(100) %></p>
-                <p class="card-text"><small class="text-muted"><%= post.address %></small></p>
-                <p class="card-text"><small class="text-muted">投稿者： <%= post.user.name %></small></p>
-              </div>
-              <div class="card-footer">
-                <small class="text-muted">投稿日： <%= post.created_at.strftime("%Y-%m-%d") %></small>
-              </div>
-            </div>
-          </div>
-        <% end %>
-      </div>
+    <div class="col">
+      
     </div>
   </div>
+  <div class="row my-5">
+    <div class="col">
+      <h2 style="border-bottom: 2px solid gold; padding-bottom: 10px;">みんなの投稿</h2>
+    </div>
+  </div>
+  <div class="row mt-4">
+    <% @posts.each do |post| %>
+      <div class="col-md-3 mb-4">
+        <div class="card h-100" style="border: none; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);">
+          <%= link_to post_path(post.id) do %>
+            <%= image_tag post.get_post_image(400, 250), class: 'card-img-top' %>
+          <% end %>
+          <div class="card-body">
+            <%= link_to post_path(post.id) do %>
+              <h5 class="card-title" style="color: #333;"><%= post.title %></h5>
+            <% end %>
+            <p class="card-text" style="color: #666;"><%= post.body.truncate(100) %></p>
+            <p class="card-text">
+              <%= image_tag post.user.get_user_image(30,30), style: "border-radius: 50%;", width: 30, height: 30 %>
+              <%= post.user.name %>
+            </p>
+            <p class="card-text">
+              <small class="text-muted">投稿日: <%= post.created_at.strftime("%Y-%m-%d") %></small>
+            </p>
+          </div>
+        </div>
+      </div>
+    <% end %>
+  </div>
+</div>
 </div>
