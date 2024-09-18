@@ -1,9 +1,16 @@
 class Spot < ApplicationRecord
+  validates :name, presence: true, length: {in: 1..50}
+  validates :summary, presence: true, length: {in: 1..1000}
+  validates :address, presence: true, length: {in: 1..100}
   
   has_many :reviews, dependent: :destroy
   has_many :post_spots, dependent: :destroy
   has_many :posts, through: :post_spots
   belongs_to :work
+  
+  
+  geocoded_by :address
+  after_validation :geocode
   
    has_one_attached :spot_image
     # 画像の表示
@@ -17,3 +24,4 @@ class Spot < ApplicationRecord
     end
   end
 end
+

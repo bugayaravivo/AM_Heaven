@@ -45,7 +45,6 @@
       <% @works.each do |work| %>
       <div class="card mt-5" style="background-color: #dcdcdc;">
         <div class="card-body">
-          <!-- ここに作品の一覧表示 -->
           <h5 class="card-title">
             <%= link_to work.title, admin_work_path(work.id), class: "text-dark" %>
           </h5>

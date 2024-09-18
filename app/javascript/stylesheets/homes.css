@@ -4,7 +4,6 @@
 
  app/javascript/stylesheets/homes.css */
 
-/* ヒーローセクション */
 .hero-section {
   height: 100vh;
   background-image: url("../images/heaven.jpg"); /* ヒーローセクションの背景画像を設定 */

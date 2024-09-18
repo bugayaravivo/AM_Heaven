@@ -13,7 +13,7 @@ import "popper.js";
 import "bootstrap";
 import "../stylesheets/application"; 
 import "../stylesheets/_header";
-import "../stylesheets/homes"; // トップページ用のCSSをインポート
+import "../stylesheets/homes"; 
 
 Rails.start()
 Turbolinks.start()
