@@ -2,10 +2,22 @@
   <div class="row justify-content-center">
     <div class="col-md-6">
       <div class="card shadow-lg">
-        <div class="card-header text-center bg-success text-white">
+        <div class="card-header text-center">
           <h3>新規登録</h3>
         </div>
         <div class="card-body">
+          <!--エラーメッセージ-->
+          <% if flash[:alert].present? %>
+            <div class="alert alert-danger" style="border-radius: 10px;">
+              <%= flash[:alert] %>
+            </div>
+          <% end %>
+          <% if flash[:notice].present? %>
+            <div class="alert alert-success" style="border-radius: 10px;">
+              <%= flash[:notice] %>
+            </div>
+          <% end %>
+      
           <%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { class: 'form-horizontal' }) do |f| %>
             <%= render "public/shared/error_messages", resource: resource %>
 

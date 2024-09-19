@@ -1,2 +1,46 @@
-<h1>Public::Spots#index</h1>
-<p>Find me in app/views/public/spots/index.html.erb</p>
+<div class="container my-5">
+  <div class="row">
+    <div class="col-md-3">
+      <form method="get" action="<%= spots_path %>">
+        <!-- 検索ボックス -->
+        <div class="form-group">
+          <input type="text" class="form-control" name="search" placeholder="聖地を検索(聖地名)" value="<%= params[:search] %>">
+        </div>
+        <div class="my-3">
+          <%= link_to "全ての聖地を見る", spots_path %>
+        </div>
+
+        <!-- 都道府県フィルタ -->
+        <div class="form-group">
+          <%= render 'public/spots/prefecture' %>
+        </div>
+      </form>
+    </div>
+    <div class="col">
+      <ul class="list-group">
+        <% @spots.each do |spot| %>
+          <li class="list-group-item">
+            <div class="row">
+              <div class="col-md-4">
+                <%= image_tag spot.get_spot_image(250,250) %>
+              </div>
+              <div class="col">
+                <h5><%= spot.name %></h5>
+                <p class="text-muted">関連作品：<%= spot.work.title %></p>
+                <p><%= truncate(spot.summary, length: 150) %></p>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-md-6 offset-md-4">
+                <p><small class="text-muted"><%= spot.address %></small></p>
+              </div>
+              <div class="col-md-2">
+                <%= link_to "詳細を見る", spot_path(spot.id), class: "btn btn-secondary btn-sm" %>
+              </div>
+            </div>
+          </li>
+        <% end %>
+      </ul>
+    </div>
+  </div>
+</div>

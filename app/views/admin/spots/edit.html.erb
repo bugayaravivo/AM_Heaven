@@ -1,2 +1,52 @@
-<h1>Admin::Spots#edit</h1>
-<p>Find me in app/views/admin/spots/edit.html.erb</p>
+<div class="container">
+  <div class="row mt-5">
+    <div class="col">
+      <h2>聖地編集画面</h2>
+    </div>
+  </div>
+  <%= form_with model: @spot, url: admin_spot_path(@spot.id), method: :patch do |f| %>
+  <div class="row my-5">
+    <div class="col-md-4 offset-md-4">
+      <p>画像</p>
+      <div>
+        <%= image_tag @spot.get_spot_image(350,300) %>
+      </div>
+      <div>
+        <%= f.file_field :spot_image %>
+      </div>
+    </div>
+  </div>
+  <div class="row my-2">
+    <div class="col-md-4 offset-md-3">
+      <%= f.label "聖地名", class: "h5" %>
+      <%= f.text_field :name, size: 70 %>
+    </div>
+  </div>
+  <div class="row my-3">
+    <div class="col-md-4 offset-md-3">
+      <h5>関連作品</h5>
+      <div>
+        <%= f.collection_select :work_id, Work.all, :id, :title, prompt: "作品を選んでください" %>
+      </div>
+    </div>
+  </div>
+  <div class="row my-3">
+    <div class="col-md-4 offset-md-3">
+      <%= f.label "住所", class: "h5" %>
+      <%= f.text_field :address, size: 70 %>
+    </div>
+  </div>
+  <div class="row my-3">
+    <div class="col-md-4 offset-md-3">
+      <%= f.label "概要", class: "h5" %>
+      <%= f.text_area :summary, cols: 75, rows: 10 %>
+    </div>
+  </div>
+  <div class="row my-3">
+    <div class="col-md-4 offset-md-3">
+      <%= f.submit "編集を保存", class: "btn btn-success" %>
+    </div>
+  </div>
+  <% end %>
+</div>
+

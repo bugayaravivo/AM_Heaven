@@ -1,10 +1,24 @@
 class Public::SpotsController < ApplicationController
+  before_action :authenticate_user!
+
+  
   def index
     @spots = Spot.all
-  end
+  
+  # キーワード検索
+    if params[:seach].present?
+      @spots = @spots.where('name LIKE ?', "%#{params[:seach]}%")
+    end 
 
+  # 都道府県フィルタ
+    if params[:area].present?
+      @spots = @spots.where('address LIKE ?', "%#{params[:area]}%")
+    end 
+  end
+  
   def show
     @spot = Spot.find(params[:id])
+    @review = @spot.reviews
   end
   
   private

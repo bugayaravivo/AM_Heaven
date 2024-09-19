@@ -2,6 +2,16 @@
   <div class="row mt-5">
     <div class="col">
       <h2>作品追加</h2>
+      <div>
+        <% if @work.errors.any? %>
+          <%= @work.errors.count %>件のエラーが発生しました
+          <ul>
+            <% @work.errors.full_messages.each do |message| %>
+              <li><%= message %></li>
+            <% end %>
+          </ul>
+        <% end %>
+      </div>
     </div>
     <div class="col">
       <h2>作品一覧</h2>

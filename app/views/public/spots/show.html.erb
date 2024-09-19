@@ -1,2 +1,64 @@
-<h1>Public::Spots#show</h1>
-<p>Find me in app/views/public/spots/show.html.erb</p>
+<div class="container">
+  <div class="row mt-3">
+    <div class="col offset-md-1">
+      <h2>聖地の詳細</h2>
+    </div>
+  </div>
+  <div class="row mt-5">
+    <div class="col offset-md-3">
+      <h4><%= @spot.name %></h4>
+    </div>
+  </div>
+
+  <style>
+    .tab-content {
+      min-height: 400px;
+    }
+  </style>
+
+
+  <div class="row mb-5">
+    <div class="col d-flex justify-content-center">
+      <h4><%= image_tag @spot.get_spot_image(500,300) %></h4>
+    </div>
+  </div>
+  <ul class="nav nav-tabs" id="myTab" role="tablist">
+    <li class="nav-item" role="presentation">
+      <button class="nav-link active" id="home-tab" data-bs-toggle="tab" data-bs-target="#home-tab-pane" type="button" role="tab" aria-controls="home-tab-pane" aria-selected="true">概要</button>
+    </li>
+    <li class="nav-item" role="presentation">
+      <button class="nav-link" id="profile-tab" data-bs-toggle="tab" data-bs-target="#profile-tab-pane" type="button" role="tab" aria-controls="profile-tab-pane" aria-selected="false">レビュー</button>
+    </li>
+    <li class="nav-item" role="presentation">
+      <button class="nav-link" id="contact-tab" data-bs-toggle="tab" data-bs-target="#contact-tab-pane" type="button" role="tab" aria-controls="contact-tab-pane" aria-selected="false">マップ</button>
+    </li>
+  </ul>
+  <div class="tab-content" id="myTabContent">
+    <div class="tab-pane fade show active" id="home-tab-pane" role="tabpanel" aria-labelledby="home-tab" tabindex="0">
+      <h5 class="mt-4">関連作品：<%= @spot.work.title %></h5>
+      <h5 class="text-muted mb-4">住所：<%= @spot.address %></h5>
+      <p><%= @spot.summary %></p>
+    </div>
+    <div class="tab-pane fade" id="profile-tab-pane" role="tabpanel" aria-labelledby="profile-tab" tabindex="0">
+      <div class="row mt-3 ml-3">
+        <div class="col">
+          <p>
+            あなたもレビューを投稿してみよう！<br>
+            こちらから⇊
+          </p>
+          <%= link_to "レビューを書く", new_spot_review_path(@spot.id), class: "btn btn-secondary" %>
+        </div>
+      </div>
+      <div class="row mt-3 ml-3">
+        <div class="col">
+          <h3 style="border-bottom: 2px solid black; padding-bottom: 10px;">みんなのレビュー</h3>
+        </div>
+      </div>
+    </div>
+    <div class="tab-pane fade" id="contact-tab-pane" role="tabpanel" aria-labelledby="contact-tab" tabindex="0">
+      <div id="map" data-lat="<%= @spot.latitude %>" data-lng="<%= @spot.longitude %>"></div>
+    </div>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+  <%= javascript_pack_tag 'map', 'data-turbolinks-track': 'reload' %>
+  </div>
+</div>

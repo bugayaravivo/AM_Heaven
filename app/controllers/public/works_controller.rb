@@ -1,4 +1,6 @@
 class Public::WorksController < ApplicationController
+  before_action :authenticate_user!
+  
   def index
     if params[:letter]
       @works = Work.by_first_letter(params[:letter])

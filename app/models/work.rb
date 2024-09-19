@@ -1,5 +1,10 @@
 class Work < ApplicationRecord
   
+  validates :title, presence: true, length: {in: 1..50}
+  validates :title_yomi, presence: true, length: {in: 1..50}
+  validates :genre, presence: true, length: {in: 1..100}
+  validates :summary, presence: true, length: {in: 1..1000}
+  
   has_many :reviews, dependent: :destroy
   has_many :spots, dependent: :destroy
   

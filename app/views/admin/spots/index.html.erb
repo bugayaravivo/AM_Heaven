@@ -2,6 +2,16 @@
   <div class="row mt-5">
     <div class="col">
       <h2>スポット追加</h2>
+      <div>
+        <% if @spot.errors.any? %>
+          <%= @spot.errors.count %>件のエラーが発生しました
+          <ul>
+            <% @spot.errors.full_messages.each do |message| %>
+              <li><%= message %></li>
+            <% end %>
+          </ul>
+        <% end %>
+      </div>
     </div>
     <div class="col">
       <h2>聖地一覧</h2>
