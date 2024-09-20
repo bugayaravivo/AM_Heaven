@@ -1,13 +1,31 @@
 class Public::ReviewsController < ApplicationController
   before_action :authenticate_user!
-  before_action :ensure_guest_user, only: [:new,:edit]
+  before_action :review_guest_user, only: [:new,:edit]
   
   def new
     @review = Review.new
+    
+    # 作品か聖地かを判定
+    if params[:work_id].present?
+      @work = Work.find(params[:work_id])
+    elsif params[:spot_id].present?
+      @spot = Spot.find(params[:spot_id])
+    end 
   end
   
   def create
     @review = Review.new(review_params)
+    
+    if params[:work_id].present?
+      @work = Work.find(params[:work_id])
+      @review.work = @work  #レビューを作品に関連付けする
+    elsif params[:spot_id].present?
+      @spot = Spot.find(params[:spot_id])
+      @review.spot = @spot  #レビューを聖地に関連付けする
+    end 
+    
+    @review.user = current_user #レビューを書いたユーザーを関連付ける
+      
     if @review.save
       if @review.work_id.present?
         redirect_to work_path(@review.work_id), notice: "レビューの投稿に成功しました"
@@ -17,6 +35,7 @@ class Public::ReviewsController < ApplicationController
         redirect_to root_path, alert: 'レビューの投稿に成功しましたが、作品も聖地にも関連づけられていません'
       end 
     else
+       logger.debug("レビュー保存に失敗: #{@review.errors.full_messages}")
       render :new
     end 
   end 
@@ -25,15 +44,19 @@ class Public::ReviewsController < ApplicationController
   end
 
   def show
+    @review = Review.find(params[:id])
   end
 
   def edit
+    @review = Review.find(params[:id])
   end
   
   def update
+    @review = Review.find(params[:id])
   end 
   
   def destroy
+    @review = Review.find(params[:id])
   end 
   
   private
@@ -43,9 +66,9 @@ class Public::ReviewsController < ApplicationController
   end 
   
   def review_guest_user
-    @user = User.find(params[:id])
+    @user = current_user
     if @user.email == "guest@example.com"
-      redirect_to user_path(current_user), notice: "ゲストユーザーなので遷都できません。"
+      redirect_to user_path(current_user), notice: "ゲストユーザーなのでレビューを作成できません。"
     end
   end  
 end

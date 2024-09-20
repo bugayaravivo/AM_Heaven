@@ -2,15 +2,14 @@
   <div class="row">
     <div class="col-md-3">
       <form method="get" action="<%= spots_path %>">
-        <!-- 検索ボックス -->
+<!--検索ボックス-->
         <div class="form-group">
           <input type="text" class="form-control" name="search" placeholder="聖地を検索(聖地名)" value="<%= params[:search] %>">
         </div>
         <div class="my-3">
           <%= link_to "全ての聖地を見る", spots_path %>
         </div>
-
-        <!-- 都道府県フィルタ -->
+<!--都道府県フィルタ-->
         <div class="form-group">
           <%= render 'public/spots/prefecture' %>
         </div>

@@ -11,6 +11,7 @@ class Public::WorksController < ApplicationController
 
   def show
     @work = Work.find(params[:id])
+    @average_rating = @work.average_rating
     @spots = @work.spots
     @reviews = @work.reviews
   end

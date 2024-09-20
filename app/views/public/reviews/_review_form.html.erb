@@ -1,0 +1,34 @@
+<div class="row my-5">
+  <div class="col-md-4 offset-md-3">
+    <%= f.label :title, "タイトル" %>
+    <%= f.text_field :title, size: 65, placeholder: "タイトルを入力　※必須ではありません" %>
+  </div>
+</div>
+<div class="row">
+  <div class="col-md-4 offset-md-3">
+    <div id="rating">
+      <lavel>評価：</lavel>
+    </div>
+    <script>
+      let elem = document.querySelector('#rating');
+      let opt = {
+        starOn: "<%= asset_path('star-on.png') %>",
+        starOff: "<%= asset_path('star-off.png') %>",
+        scoreName: 'review[rating]'
+        // score: "<%#= isEdit ? jonsoku.rating : 0 %>"
+      };
+      window.raty(elem, opt);
+    </script>
+  </div>
+</div>
+<div class="row my-5">
+  <div class="col-md-4 offset-md-3">
+    <%= f.label :body, "レビュー本文" %>
+    <%= f.text_area :body, placeholder: "感想や評価を書いてみよう　※必須ではありません", rows: 10, cols: 70 %>
+  </div>
+</div>
+<div class="row">
+  <div class="col-md-6 offset-md-3 mb-5 d-flex justify-content-end">
+    <%= f.submit "レビューする", class: "btn btn-success" %>
+  </div>
+</div>

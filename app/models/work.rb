@@ -21,6 +21,12 @@ class Work < ApplicationRecord
     end
   end
   
+  # 平均評価
+  def average_rating
+    return 0 if reviews.empty?  #レビューがない場合は０を返す
+    reviews.average(:rating).to_f.round(1)  #平均評価を小数点１位まで丸める
+  end 
+  
   scope :by_first_letter, ->(letter) {
     case letter
     when 'ア'

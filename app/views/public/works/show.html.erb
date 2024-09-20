@@ -64,14 +64,86 @@
             あなたもレビューを投稿してみよう！<br>
             こちらから⇊
           </p>
-          <%= link_to "レビューを書く", new_spot_review_path(@spot.id), class: "btn btn-secondary" %>
+          <%= link_to "レビューを書く", new_work_review_path(@work.id), class: "btn btn-secondary" %>
         </div>
       </div>
       <div class="row mt-3 ml-3">
         <div class="col">
           <h3 style="border-bottom: 2px solid black; padding-bottom: 10px;">みんなのレビュー</h3>
         </div>
+        <!--平均評価-->
+        <div class="col-md-2">
+          <div id="average-rating" data-score="<%= @average_rating %>"></div>
+        </div>
+        <div class="col">
+          <p>平均評価：<%= @average_rating %> / 5</p>
+        </div>
+        <script>
+          document.addEventListener('DOMContentLoaded', () => {
+            const averageRatingElement = document.querySelector('#average-rating');
+            if (averageRatingElement) {
+              const averageRating = averageRatingElement.dataset.score;
+              window.raty(averageRatingElement, {
+                readOnly: true, // 読み取り専用にする
+                score: averageRating, // 平均評価のスコアを表示
+                starOn: '/assets/star-on.png',
+                starOff: '/assets/star-off.png',
+                starHalf: '/assets/star-half.png',
+                number: 5,
+                halfShow: true // 小数点の評価を表示
+              });
+            }
+          });
+        </script>
       </div>
+      <!--レビュー一覧-->
+      <ul class="list-group">
+        <% @reviews.each do |review| %>
+          <li class="list-group-item">
+            <div class="row">
+              <div class="col-md-4">
+                <div class="d-flex align-items-center">
+                  <%= image_tag review.user.get_user_image(70,70), class: 'rounded-circle mr-3', width: 70, height: 70 %>
+                  <h5><%= review.user.name %></h5>
+                </div>
+              </div>
+              <div class="col">
+                <h5><%= review.title %></h5>
+                <div class="d-flex align-items-center">
+                  <div id="review-rating-<%= review.id %>" data-score="<%= review.rating %>"></div>
+                  <p class="ml-3 mt-4">評価: <%= review.rating %> / 5</p>
+                </div>
+                <p><%= truncate(review.body, length: 100) %></p>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col d-flex justify-content-end">
+                <%= link_to "詳細を見る", review_path(review.id), class: "btn btn-secondary btn-sm" %>
+              </div>
+            </div>
+          </li>
+        <% end %>
+        <script>
+          document.addEventListener('DOMContentLoaded', () => {
+            // すべてのレビューの評価を星で表示する
+            <% @reviews.each do |review| %>
+              const reviewRatingElement = document.querySelector('#review-rating-<%= review.id %>');
+              if (reviewRatingElement) {
+                const reviewRating = reviewRatingElement.dataset.score;
+                window.raty(reviewRatingElement, {
+                  readOnly: true, // 読み取り専用
+                  score: reviewRating,
+                  starOn: '/assets/star-on.png',
+                  starOff: '/assets/star-off.png',
+                  starHalf: '/assets/star-half.png',
+                  number: 5, // 星の数
+                  halfShow: true
+                });
+              }
+            <% end %>
+          });
+        </script>
+      </ul>
     </div>
   </div>
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
