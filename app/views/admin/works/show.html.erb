@@ -1,2 +1,35 @@
-<h1>Admin::Works#show</h1>
-<p>Find me in app/views/admin/works/show.html.erb</p>
+<div class="container">
+  <div class="row mt-5">
+    <div class="col-md-8">
+      <h2>作品詳細</h2>
+    </div>
+    <div class="col-md-4">
+      <%= link_to "＋", admin_works_path, class: "btn btn-secondary arounded-circle border" %>
+    </div>
+  </div>
+  <div class="row mt-3">
+    <div class="col">
+      <h4 class="mt-3"><%= @work.title %></h4>
+      <div class="mt-1 ml-3">
+        <p class="text-muted">ジャンル：<%= @work.genre %></p>
+      </div>
+    </div>
+  </div>
+  <div class="row mt-3 ml-4">
+    <div class="col-md-3">
+      <%= image_tag @work.get_work_image(200,250) %>
+    </div>
+    <div class="col-md-4 d-flex align-items-end">
+      <%= link_to "作品編集", edit_admin_work_path(@work.id), class: "btn btn-success mr-3" %>
+      <%= link_to "作品削除", admin_work_path(@work.id), method: :delete, data: { confirm: "本当に削除しますか？"}, class: "btn btn-danger" %>
+    </div>
+  </div>
+  <div class="row my-5">
+    <div class="col">
+      <div class="card">
+        <h5>作品概要</h5>
+        <p><%= @work.summary %></p>
+      </div>
+    </div>
+  </div>
+</div>

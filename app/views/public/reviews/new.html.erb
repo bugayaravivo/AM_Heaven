@@ -1,2 +1,27 @@
-<h1>Public::Reviews#new</h1>
-<p>Find me in app/views/public/reviews/new.html.erb</p>
+<div class="container">
+  <div class="row">
+    <div class="col">
+      <%=flash.now[:alert] %>
+    </div>
+  </div>
+  <div class="row mt-5">
+    <div class="col d-flex justify-content-center">
+      <% if @work.present? %>
+        <h2><%= @work.title %>のレビュー投稿</h2>
+      <% elsif @spot.present? %>
+        <h2><%= @spot.name %>のレビュー投稿</h2>
+      <% else %>
+        <h2>レビュー投稿</h2>
+      <% end %>
+    </div>
+  </div>
+  <% if @work.present? %>
+    <%= form_with model: @review, url: work_reviews_path(@work.id), method: :post do |f| %>
+      <%= render "public/reviews/review_form", f: f %>
+     <% end %>
+  <% elsif @spot.present? %>
+    <%= form_with model: @review, url: spot_reviews_path(@spot.id), method: :post do |f| %>
+      <%= render "public/reviews/review_form", f: f %>
+    <% end %>
+  <% end %>
+</div>

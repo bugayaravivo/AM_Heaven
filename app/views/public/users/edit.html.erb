@@ -6,7 +6,7 @@
   </div>
   <div class="row mt-5">
     <div class="col d-flex justify-content-center">
-      <%= image_tag @user.get_user_image(150,150), style: "border-radius: 50%;", width: 150, height: 150 %>
+      <%= image_tag @user.get_user_image(150,150), style: "border-radius: 50%; border: 5px solid gold;", width: 150, height: 150 %>
     </div>
   </div>
   <%= form_with model: @user, url: users_information_path(@user.id), method: :patch do |f| %>
@@ -30,7 +30,7 @@
     <div class="col-md-4 offset-md-4">
       <p>profile</p>
       <div>
-        <%= f.text_area :introduction, cols: 45, rows: 8 %>
+        <%= f.text_area :introduction, cols: 55, rows: 10 %>
       </div>
     </div>
   </div>

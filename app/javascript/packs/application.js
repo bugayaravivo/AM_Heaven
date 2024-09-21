@@ -13,7 +13,14 @@ import "popper.js";
 import "bootstrap";
 import "../stylesheets/application"; 
 import "../stylesheets/_header";
-import "../stylesheets/homes"; // トップページ用のCSSをインポート
+import "../stylesheets/homes"; 
+// 評価
+import Raty from "raty.js"
+window.raty = function(elem,opt) {
+  let raty =  new Raty(elem,opt)
+  raty.init();
+  return raty;
+}
 
 Rails.start()
 Turbolinks.start()

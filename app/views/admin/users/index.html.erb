@@ -1,2 +1,42 @@
-<h1>Admin::Users#index</h1>
-<p>Find me in app/views/admin/users/index.html.erb</p>
+<div class="container">
+  <div class="row mt-5">
+    <div class="col">
+      <h2>会員一覧</h2>
+    </div>
+  </div>
+  <div class="row mt-5">
+    <div class="col">
+      <table class="table">
+        <thead>
+          <tr>
+            <th>会員ID</th>
+            <th>名前</th>
+            <th>メールアドレス</th>
+            <th>ステータス</th>
+          </tr>
+        </thead>
+        <% @users.each do |user| %>
+          <tbody>
+          <tr>
+            <td><%= user.id %></td>
+            <td>
+              <%= link_to admin_user_path(user.id), class: "text-dark" do %>
+                <%= image_tag user.get_user_image(50,50), style: "border-radius: 50%;", width: 50, height: 50 %>
+                <%= user.name %>
+              <% end %>
+            </td>
+            <td><%= user.email %></td>
+            <td>
+              <% if user.user_status == "有効" %>
+                <span style="color: green"><%= user.user_status %></span>
+              <% else %>
+                <span style="color: silver"><%= user.user_status %></span>
+              <% end %>
+            </td>
+          </tr>
+          </tbody>
+        <% end %>
+      </table>
+    </div>
+  </div>
+</div>

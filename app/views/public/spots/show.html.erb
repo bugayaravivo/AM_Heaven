@@ -1,2 +1,143 @@
-<h1>Public::Spots#show</h1>
-<p>Find me in app/views/public/spots/show.html.erb</p>
+<div class="container">
+  <div class="row mt-3">
+    <div class="col offset-md-1">
+      <h2>聖地の詳細</h2>
+    </div>
+  </div>
+  <div class="row mt-5">
+    <div class="col offset-md-3">
+      <h4><%= @spot.name %></h4>
+    </div>
+  </div>
+
+  <style>
+    .tab-content {
+      min-height: 400px;
+    }
+  </style>
+
+
+  <div class="row mb-5">
+    <div class="col d-flex justify-content-center">
+      <h4><%= image_tag @spot.get_spot_image(500,300) %></h4>
+    </div>
+  </div>
+  <ul class="nav nav-tabs" id="myTab" role="tablist">
+    <li class="nav-item" role="presentation">
+      <button class="nav-link active" id="home-tab" data-bs-toggle="tab" data-bs-target="#home-tab-pane" type="button" role="tab" aria-controls="home-tab-pane" aria-selected="true">概要</button>
+    </li>
+    <li class="nav-item" role="presentation">
+      <button class="nav-link" id="profile-tab" data-bs-toggle="tab" data-bs-target="#profile-tab-pane" type="button" role="tab" aria-controls="profile-tab-pane" aria-selected="false">レビュー</button>
+    </li>
+    <li class="nav-item" role="presentation">
+      <button class="nav-link" id="contact-tab" data-bs-toggle="tab" data-bs-target="#contact-tab-pane" type="button" role="tab" aria-controls="contact-tab-pane" aria-selected="false">マップ</button>
+    </li>
+  </ul>
+  <div class="tab-content" id="myTabContent">
+    <div class="tab-pane fade show active" id="home-tab-pane" role="tabpanel" aria-labelledby="home-tab" tabindex="0">
+      <h5 class="mt-4">関連作品：<%= @spot.work.title %></h5>
+      <h5 class="text-muted mb-4">住所：<%= @spot.address %></h5>
+      <p><%= @spot.summary %></p>
+    </div>
+    <div class="tab-pane fade" id="profile-tab-pane" role="tabpanel" aria-labelledby="profile-tab" tabindex="0">
+      <div class="row mt-3 ml-3">
+        <div class="col">
+          <p>
+            あなたもレビューを投稿してみよう！<br>
+            こちらから⇊
+          </p>
+          <%= link_to "レビューを書く", new_spot_review_path(@spot.id), class: "btn btn-secondary" %>
+        </div>
+      </div>
+      <div class="row mt-3 ml-3">
+        <div class="col">
+          <h3 style="border-bottom: 2px solid black; padding-bottom: 10px;">みんなのレビュー</h3>
+        </div>
+        <!--平均評価-->
+        <div class="col-md-2">
+          <div id="average-rating-spot" data-score="<%= @average_rating %>"></div>
+        </div>
+        <div class="col">
+          <p>平均評価：<%= @average_rating %> / 5</p>
+        </div>
+        <script>
+          document.addEventListener('DOMContentLoaded', () => {
+            const averageRatingElement = document.querySelector('#average-rating-spot');
+            if (averageRatingElement) {
+              const averageRating = averageRatingElement.dataset.score;
+              window.raty(averageRatingElement, {
+                readOnly: true, // 読み取り専用にする
+                score: averageRating, // 平均評価のスコアを表示
+                starOn: '/assets/star-on.png',
+                starOff: '/assets/star-off.png',
+                starHalf: '/assets/star-half.png',
+                number: 5,
+                halfShow: true // 小数点の評価を表示
+              });
+            }
+          });
+        </script>
+      </div>
+      <!--レビュー一覧-->
+      <ul class="list-group">
+        <% @reviews.each do |review| %>
+          <li class="list-group-item">
+            <div class="row">
+              <div class="col-md-3">
+                <%= link_to user_path(review.user_id) do %>
+                  <div class="d-flex align-items-center">
+                    <%= image_tag review.user.get_user_image(70,70), class: 'rounded-circle mr-3', width: 70, height: 70 %>
+                    <h5><%= review.user.name %></h5>
+                  </div>
+                <% end %>
+                <div class="d-flex align-items-center">
+                  <p class="text-muted text-right"><%= review.created_at.strftime("%Y-%m-%d %H:%M") %></p>
+                </div>
+              </div>
+              <div class="col">
+                <h5><%= review.title %></h5>
+                <div class="d-flex align-items-center">
+                  <div class="review-rating-spot" id="review-rating-spot-<%= review.id %>" data-score="<%= review.rating %>"></div>
+                  <p class="ml-3 mt-4">評価: <%= review.rating %> / 5</p>
+                </div>
+                <p><%= truncate(review.body, length: 100) %></p>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col d-flex justify-content-end">
+                <%= link_to "詳細を見る", review_path(review.id), class: "btn btn-secondary btn-sm mr-3" %>
+                <% if review.user == current_user %>
+                  <%= link_to "削除", review_path(review.id), method: :delete, class:"btn btn-danger btn-sm" %>
+                <% end %>
+              </div>
+            </div>
+          </li>
+        <% end %>
+      </ul>
+      <script>
+        document.addEventListener('DOMContentLoaded', () => {
+          // すべてのレビューの星評価要素を取得
+          const reviewRatingElements = document.querySelectorAll('.review-rating-spot');
+          // 各レビューの評価を星で表示する
+          reviewRatingElements.forEach((element) => {
+            const score = element.dataset.score;
+            window.raty(element, {
+              readOnly: true, // 読み取り専用
+              score: score,
+              starOn: '/assets/star-on.png',
+              starOff: '/assets/star-off.png',
+              starHalf: '/assets/star-half.png',
+              number: 5, // 星の数
+              halfShow: true // 小数点の評価も表示
+            });
+          });
+        });
+      </script>
+    </div>
+    <div class="tab-pane fade" id="contact-tab-pane" role="tabpanel" aria-labelledby="contact-tab" tabindex="0">
+      <div id="map" data-lat="<%= @spot.latitude %>" data-lng="<%= @spot.longitude %>"></div>
+    </div>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+  <%= javascript_pack_tag 'map', 'data-turbolinks-track': 'reload' %>
+  </div>
+</div>
