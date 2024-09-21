@@ -28,6 +28,7 @@ class Public::ReviewsController < ApplicationController
       
     if @review.save
       if @review.work_id.present?
+       logger.debug("レビュー保存に失敗: #{@review.errors.full_messages}")
         redirect_to work_path(@review.work_id), notice: "レビューの投稿に成功しました"
       elsif @review.spot_id.present?
         redirect_to spot_path(@review.spot_id), notice: "レビューの投稿に成功しました"
@@ -35,13 +36,10 @@ class Public::ReviewsController < ApplicationController
         redirect_to root_path, alert: 'レビューの投稿に成功しましたが、作品も聖地にも関連づけられていません'
       end 
     else
-       logger.debug("レビュー保存に失敗: #{@review.errors.full_messages}")
+      flash.now[:alert] = @review.errors.full_messages.join(", ")
       render :new
     end 
   end 
-
-  def index
-  end
 
   def show
     @review = Review.find(params[:id])
@@ -57,6 +55,17 @@ class Public::ReviewsController < ApplicationController
   
   def destroy
     @review = Review.find(params[:id])
+    if @review.destroy
+      if @review.work_id.present?
+        redirect_to work_path(@review.work_id), notice: "レビューを削除しました"
+      elsif @review.spot_id.present?
+        redirect_to spot_path(@review.spot_id), notice: "レビューを削除しました"
+      else
+        redirect_to root_path
+      end 
+    else
+      render :new
+    end 
   end 
   
   private

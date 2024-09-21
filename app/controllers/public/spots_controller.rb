@@ -18,7 +18,8 @@ class Public::SpotsController < ApplicationController
   
   def show
     @spot = Spot.find(params[:id])
-    @review = @spot.reviews
+    @average_rating = @spot.average_rating
+    @reviews = @spot.reviews
   end
   
   private

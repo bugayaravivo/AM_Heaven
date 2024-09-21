@@ -23,5 +23,12 @@ class Spot < ApplicationRecord
       spot_image.variant(resize_to_limit: [width, height]).processed
     end
   end
+  
+  # 平均評価
+  def average_rating
+    return 0 if reviews.empty?  #レビューがない場合は０を返す
+    reviews.average(:rating).to_f.round(1)  #平均評価を小数点１位まで丸める
+  end 
+
 end
 

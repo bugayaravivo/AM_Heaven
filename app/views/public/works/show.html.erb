@@ -101,16 +101,21 @@
         <% @reviews.each do |review| %>
           <li class="list-group-item">
             <div class="row">
-              <div class="col-md-4">
+              <div class="col-md-3">
+                <%= link_to user_path(review.user_id) do %>
+                  <div class="d-flex align-items-center">
+                    <%= image_tag review.user.get_user_image(70,70), class: 'rounded-circle mr-3', width: 70, height: 70 %>
+                    <h5><%= review.user.name %></h5>
+                  </div>
+                <% end %>
                 <div class="d-flex align-items-center">
-                  <%= image_tag review.user.get_user_image(70,70), class: 'rounded-circle mr-3', width: 70, height: 70 %>
-                  <h5><%= review.user.name %></h5>
+                  <p class="text-muted text-right"><%= review.created_at.strftime("%Y-%m-%d %H:%M") %></p>
                 </div>
               </div>
               <div class="col">
                 <h5><%= review.title %></h5>
                 <div class="d-flex align-items-center">
-                  <div id="review-rating-<%= review.id %>" data-score="<%= review.rating %>"></div>
+                  <div class="review-rating" id="review-rating-<%= review.id %>" data-score="<%= review.rating %>"></div>
                   <p class="ml-3 mt-4">評価: <%= review.rating %> / 5</p>
                 </div>
                 <p><%= truncate(review.body, length: 100) %></p>
@@ -118,32 +123,35 @@
             </div>
             <div class="row">
               <div class="col d-flex justify-content-end">
-                <%= link_to "詳細を見る", review_path(review.id), class: "btn btn-secondary btn-sm" %>
+                <%= link_to "詳細を見る", review_path(review.id), class: "btn btn-secondary btn-sm mr-3" %>
+                <% if review.user == current_user %>
+                  <%= link_to "削除", review_path(review.id), method: :delete, class:"btn btn-danger btn-sm" %>
+                <% end %>
               </div>
             </div>
           </li>
         <% end %>
-        <script>
-          document.addEventListener('DOMContentLoaded', () => {
-            // すべてのレビューの評価を星で表示する
-            <% @reviews.each do |review| %>
-              const reviewRatingElement = document.querySelector('#review-rating-<%= review.id %>');
-              if (reviewRatingElement) {
-                const reviewRating = reviewRatingElement.dataset.score;
-                window.raty(reviewRatingElement, {
-                  readOnly: true, // 読み取り専用
-                  score: reviewRating,
-                  starOn: '/assets/star-on.png',
-                  starOff: '/assets/star-off.png',
-                  starHalf: '/assets/star-half.png',
-                  number: 5, // 星の数
-                  halfShow: true
-                });
-              }
-            <% end %>
-          });
-        </script>
       </ul>
+      <script>
+        document.addEventListener('DOMContentLoaded', () => {
+          // すべてのレビューの星評価要素を取得
+          const reviewRatingElements = document.querySelectorAll('.review-rating');
+
+          // 各レビューの評価を星で表示する
+          reviewRatingElements.forEach((element) => {
+            const score = element.dataset.score;
+            window.raty(element, {
+              readOnly: true, // 読み取り専用
+              score: score,
+              starOn: '/assets/star-on.png',
+              starOff: '/assets/star-off.png',
+              starHalf: '/assets/star-half.png',
+              number: 5, // 星の数
+              halfShow: true // 小数点の評価も表示
+            });
+          });
+        });
+      </script>
     </div>
   </div>
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
