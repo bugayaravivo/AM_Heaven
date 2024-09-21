@@ -25,3 +25,10 @@
 .feature-box i {
   color: #007bff;
 }
+
+.about {
+  height: 80vh;
+  background-image: url("../images/about_top.jpg");
+  background-size: cover;
+  background-position: center;
+}

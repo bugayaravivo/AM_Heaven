@@ -1,16 +1,8 @@
-<!-- app/views/public/homes/top.html.erb -->
-<%# content_for :stylesheets do %>
-  <%#= stylesheet_pack_tag 'homes', media: 'all', 'data-turbolinks-track': 'reload' %>
-<%# end %>
-<!-- app/views/public/homes/top.html.erb -->
-
-<!-- app/views/public/homes/top.html.erb -->
-
 <div class="hero-section text-center text-white d-flex justify-content-center align-items-center">
   <div class="hero-content">
     <h1 class="display-4">アニメ・マンガの聖地を発見しよう</h1>
     <p class="lead">お気に入りの作品の舞台となった現実の場所を探索しよう。</p>
-    <a href="#features" class="btn btn-primary btn-lg">詳しくはこちら</a>
+    <%= link_to "詳しくはこちら", about_path, class: "btn btn-primary btn-lg" %>
   </div>
 </div>
 
@@ -20,22 +12,25 @@
       <div class="col-md-4">
         <div class="feature-box">
           <i class="fas fa-map-marker-alt fa-3x mb-3"></i>
-          <h3>聖地を発見</h3>
-          <p>人気アニメやマンガに登場する場所を見つけよう。</p>
+          <h3>作品を見る</h3>
+          <p>人気アニメやマンガから聖地を見つけよう。</p>
+          <%= link_to "作品一覧", works_path, class: "btn btn-secondary btn-lg" %>
         </div>
       </div>
       <div class="col-md-4">
         <div class="feature-box">
           <i class="fas fa-star fa-3x mb-3"></i>
-          <h3>レビューを読む</h3>
-          <p>他のファンがこれらの聖地について何を語っているかを見てみよう。</p>
+          <h3>みんなの投稿を見る</h3>
+          <p>他のファンが聖地について何を語っているかを見てみよう。</p>
+          <%= link_to "一覧を見る", posts_path, class: "btn btn-secondary btn-lg" %>
         </div>
       </div>
       <div class="col-md-4">
         <div class="feature-box">
           <i class="fas fa-camera fa-3x mb-3"></i>
           <h3>体験を共有</h3>
-          <p>訪れた場所のレビューや写真を投稿しよう。</p>
+          <p>訪れた場所の口コミや感想、写真を投稿しよう。</p>
+          <%= link_to "投稿する", new_post_path, class: "btn btn-secondary btn-lg" %>
         </div>
       </div>
     </div>

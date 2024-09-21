@@ -1,4 +1,7 @@
 class Public::PostsController < ApplicationController
+  before_action :authenticate_user!
+  before_action :post_guest_user, only: [:new,:edit]
+  
   def new
     @post = Post.new
   end
@@ -48,4 +51,11 @@ class Public::PostsController < ApplicationController
   def post_params
     params.require(:post).permit(:title, :body, :address, :user_id, :post_image)
   end 
+  
+  def post_guest_user
+    @user = current_user
+    if @user.email == "guest@example.com"
+      redirect_to user_path(current_user), notice: "ゲストユーザーなので新規投稿できません。"
+    end
+  end  
 end
