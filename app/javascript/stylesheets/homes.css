@@ -4,14 +4,14 @@
 
  app/javascript/stylesheets/homes.css */
 
-.hero-section {
+.top-section {
   height: 100vh;
   background-image: url("../images/heaven.jpg"); /* ヒーローセクションの背景画像を設定 */
   background-size: cover;
   background-position: center;
 }
 
-.hero-content {
+.top-content {
   background-color: rgba(0, 0, 0, 0.5); /* 背景を暗くするためのオーバーレイ */
   padding: 20px;
   border-radius: 10px;
@@ -31,4 +31,10 @@
   background-image: url("../images/about_top.jpg");
   background-size: cover;
   background-position: center;
+}
+
+.about-content {
+  background-color: rgba(0, 0, 0, 0.5); /* 背景を暗くするためのオーバーレイ */
+  padding: 20px;
+  border-radius: 10px;
 }
