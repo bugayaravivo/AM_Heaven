@@ -61,7 +61,7 @@
           <p>平均評価：<%= @average_rating %> / 5</p>
         </div>
         <script>
-          document.addEventListener('DOMContentLoaded', () => {
+          document.addEventListener('turbolinks:load', () => {
             const averageRatingElement = document.querySelector('#average-rating-spot');
             if (averageRatingElement) {
               const averageRating = averageRatingElement.dataset.score;
@@ -115,7 +115,7 @@
         <% end %>
       </ul>
       <script>
-        document.addEventListener('DOMContentLoaded', () => {
+        document.addEventListener('turbolinks:load', () => {
           // すべてのレビューの星評価要素を取得
           const reviewRatingElements = document.querySelectorAll('.review-rating-spot');
           // 各レビューの評価を星で表示する

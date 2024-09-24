@@ -11,9 +11,9 @@ import "channels"
 import "jquery";
 import "popper.js";
 import "bootstrap";
-import "../stylesheets/application"; 
+import "../stylesheets/application";
 import "../stylesheets/_header";
-import "../stylesheets/homes"; 
+import "../stylesheets/homes";
 // 評価
 import Raty from "raty.js"
 window.raty = function(elem,opt) {

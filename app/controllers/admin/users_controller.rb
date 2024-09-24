@@ -3,6 +3,14 @@ class Admin::UsersController < ApplicationController
   
   def index
     @users = User.all
+    
+    if params[:keyword].present?
+      @users = User.where("name like ?", "%#{params[:keyword]}%" )
+    end 
+    
+    if params[:is_active].present?
+      @users = User.where(is_active: params[:is_active] == "true")
+    end 
   end
 
   def show

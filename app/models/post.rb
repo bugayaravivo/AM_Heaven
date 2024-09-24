@@ -4,6 +4,9 @@ class Post < ApplicationRecord
   has_many :post_spots, dependent: :destroy
   has_many :spots, through: :post_spots
   
+  validates :title, presence: true, length: {in: 1..50, message: 'は1〜50文字。'}
+  validates :body, presence: true, length: {in: 1..1000, message: 'は1〜1000文字。'}
+
    has_one_attached :post_image
     # 画像の表示
   def get_post_image(width, height)

@@ -22,6 +22,16 @@
     <% end %>
 
     <main class="main">
+      <% flash.each do |key, message| %>
+      <div class="flash-message alert alert-<%= flash_class(key) %> alert-dismissible fade show" role="alert">
+        <i class="fas <%= icon_class(key) %>"></i>
+        <%= message %>
+        <button type="button" class="btn" data-bs-dismiss="alert" aria-label="Close"  style="float: right;">
+          <i class="fas fa-times"></i>
+        </button>
+      </div>
+      <% end %>
+      <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
       <%= yield %>
     </main>
 

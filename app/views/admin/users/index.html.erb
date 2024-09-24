@@ -1,18 +1,38 @@
 <div class="container">
-  <div class="row mt-5">
+  <div class="row mt-5 mb-3">
     <div class="col">
       <h2>会員一覧</h2>
     </div>
   </div>
+
+  <%= form_with model: @user, url: admin_users_path, method: :get do |f| %>
+  <div class="row">
+    <div class="col-md-4">
+      <%= label_tag :keyword, "キーワード", class: "form-label" %>
+      <%= text_field_tag :keyword, params[:keyword], class: "form-control", placeholder: "名前検索" %>
+    </div>
+    <div class="col-md-3">
+      <%= label_tag :is_active, "ステータス", class: "form-label" %>
+      <div class="row mt-2">
+        <div class="col d-flex justify-content-center">
+          <%= select_tag :is_active, options_for_select([["すべて", ""], ["有効", "true"], ["退会", "false"]], params[:is_active]), class: "form-select" %>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-2 d-flex align-items-end">
+      <%= submit_tag "検索", class: "btn btn-primary w-100" %>
+    </div>
+  </div>
+  <% end %>
   <div class="row mt-5">
     <div class="col">
-      <table class="table">
-        <thead>
+      <table class="table table-striped">
+        <thead class="table-dark">
           <tr>
-            <th>会員ID</th>
-            <th>名前</th>
-            <th>メールアドレス</th>
-            <th>ステータス</th>
+            <th scope="col">会員ID</th>
+            <th scope="col">名前</th>
+            <th scope="col">メールアドレス</th>
+            <th scope="col">ステータス</th>
           </tr>
         </thead>
         <% @users.each do |user| %>

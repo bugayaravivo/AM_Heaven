@@ -10,8 +10,10 @@ class Public::PostsController < ApplicationController
     @post = current_user.posts.new(post_params)
     
     if @post.save
+      flash[:notice] = "新規投稿に成功しました。"
       redirect_to post_path(@post.id)
     else
+      flash[:alert] = @post.errors.full_messages.join(", ")
       render :new
     end 
   end 
@@ -34,8 +36,10 @@ class Public::PostsController < ApplicationController
     @post = Post.find(params[:id])
     
     if @post.update(post_params)
+      flash[:notice] = "投稿が更新されました。"
       redirect_to post_path(@post.id)
     else
+      flash[:alert] = @post.errors.full_messages.join(", ")
       render edit
     end 
   end 
@@ -43,6 +47,7 @@ class Public::PostsController < ApplicationController
   def destroy
     @post = Post.find(params[:id])
     @post.destroy
+    flash[:notice] = "投稿が削除されました。"
     redirect_to posts_path
   end 
   
