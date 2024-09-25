@@ -5,3 +5,31 @@
   height: 350px;
 }
 
+.main-body {
+  background-color: #ffefd5;
+}
+
+.list-group-prefecture {
+  margin: 0;
+  padding-left: 0;
+}
+
+.list-group-item-prefecture {
+  border: none;
+  background-color: #f8f9fa;
+  transition: background-color 0.3s ease;
+}
+
+.list-group-item-prefecture:hover {
+  background-color: #c0c0c0;
+  color: #000;
+}
+
+.list-group-item-prefecture i {
+  color: #ff0000;
+}
+
+.text-decoration-none-prefecture:hover {
+  text-decoration: none;
+  font-weight: bold; /* リンクをホバーしたときに太字に */
+}

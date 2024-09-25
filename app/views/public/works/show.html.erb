@@ -79,7 +79,6 @@
           <p>平均評価：<%= @average_rating %> / 5</p>
         </div>
         <script>
-          document.addEventListener('turbolinks:load', () => {
             const averageRatingElement = document.querySelector('#average-rating');
             if (averageRatingElement) {
               const averageRating = averageRatingElement.dataset.score;
@@ -93,7 +92,6 @@
                 halfShow: true // 小数点の評価を表示
               });
             }
-          });
         </script>
       </div>
       <!--レビュー一覧-->
@@ -133,10 +131,8 @@
         <% end %>
       </ul>
       <script>
-        document.addEventListener('turbolinks:load', () => {
           // すべてのレビューの星評価要素を取得
           const reviewRatingElements = document.querySelectorAll('.review-rating');
-
           // 各レビューの評価を星で表示する
           reviewRatingElements.forEach((element) => {
             const score = element.dataset.score;
@@ -150,7 +146,6 @@
               halfShow: true // 小数点の評価も表示
             });
           });
-        });
       </script>
     </div>
   </div>

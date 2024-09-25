@@ -6,8 +6,8 @@ class Public::SpotsController < ApplicationController
     @spots = Spot.all
   
   # キーワード検索
-    if params[:seach].present?
-      @spots = @spots.where('name LIKE ?', "%#{params[:seach]}%")
+    if params[:search].present?
+      @spots = @spots.where('name LIKE ?', "%#{params[:search]}%")
     end 
 
   # 都道府県フィルタ

@@ -13,31 +13,36 @@
     </div>
   <!-- ステータス -->
     <div class="col d-flex justify-content-center">
-      <div class="card p-3" style="width: 500px; background-color: #f8f9fa; border: none;">
+      <div class="card p-4" style="width: 500px; background-color: #fff; border-radius: 15px; border: 1px solid #e0e0e0; box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);">
         <div class="card-body text-center">
-          <h5 class="card-title" style="color: #555;">投稿数</h5>
-          <div class="card-text" style="font-size: 24px; font-weight: bold;">
+          <!-- 投稿数 -->
+          <h5 class="card-title" style="color: #333; font-weight: 600;">投稿数</h5>
+          <div class="card-text" style="font-size: 32px; font-weight: 700; color: #ff6f61;">
             <%= @user.posts.count %>
           </div>
-          <h5 class="card-title mt-3" style="color: #555;">プロフィール</h5>
-          <div class="card-text">
+    
+          <!-- 区切り線 -->
+          <hr style="border-top: 1px solid #e0e0e0; margin: 20px 0;">
+    
+          <!-- プロフィール -->
+          <h5 class="card-title" style="color: #333; font-weight: 600;">プロフィール</h5>
+          <div class="card-text" style="font-size: 16px; color: #666;">
             <%= @user.introduction %>
           </div>
         </div>
       </div>
     </div>
   </div>
-  
   <!-- 投稿一覧 -->
   <div class="row my-5">
     <div class="col">
-      <h2 style="border-bottom: 2px solid gold; padding-bottom: 10px;">投稿一覧</h2>
+      <h2 style="border-bottom: 2px solid gold; padding-bottom: 10px;"><%= @user.name %>の投稿一覧</h2>
     </div>
   </div>
   
   <div class="row mt-4">
     <% @posts.each do |post| %>
-      <div class="col-md-6 mb-4">
+      <div class="col-md-4 mb-4">
         <%= link_to post_path(post.id) do %>
           <div class="card h-100" style="border: none; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);">
               <%= image_tag post.get_post_image(400, 250), class: 'card-img-top' %>

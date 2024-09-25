@@ -61,7 +61,6 @@
           <p>平均評価：<%= @average_rating %> / 5</p>
         </div>
         <script>
-          document.addEventListener('turbolinks:load', () => {
             const averageRatingElement = document.querySelector('#average-rating-spot');
             if (averageRatingElement) {
               const averageRating = averageRatingElement.dataset.score;
@@ -75,7 +74,6 @@
                 halfShow: true // 小数点の評価を表示
               });
             }
-          });
         </script>
       </div>
       <!--レビュー一覧-->
@@ -115,7 +113,6 @@
         <% end %>
       </ul>
       <script>
-        document.addEventListener('turbolinks:load', () => {
           // すべてのレビューの星評価要素を取得
           const reviewRatingElements = document.querySelectorAll('.review-rating-spot');
           // 各レビューの評価を星で表示する
@@ -131,7 +128,6 @@
               halfShow: true // 小数点の評価も表示
             });
           });
-        });
       </script>
     </div>
     <div class="tab-pane fade" id="contact-tab-pane" role="tabpanel" aria-labelledby="contact-tab" tabindex="0">
