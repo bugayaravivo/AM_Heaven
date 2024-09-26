@@ -60,7 +60,7 @@ class Public::PostsController < ApplicationController
   def post_guest_user
     @user = current_user
     if @user.email == "guest@example.com"
-      redirect_to user_path(current_user), notice: "ゲストユーザーなので新規投稿できません。"
+      redirect_to user_path(current_user), notice: "ゲストユーザーは新規投稿できません。"
     end
   end  
 end
