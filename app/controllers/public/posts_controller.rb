@@ -19,7 +19,22 @@ class Public::PostsController < ApplicationController
   end 
 
   def index
-    @posts = Post.all
+    if params[:keyword].present?
+      @posts = Post.where("title like ?", "%#{params[:keyword]}%")
+    else
+      @posts = Post.all
+    end
+    
+    case params[:sort]
+      when 'newest'
+        @posts = @posts.order(created_at: :desc)
+      when 'oldest'
+        @posts = @posts.order(created_at: :asc)
+      when 'most_comments'
+        @posts = @posts.left_joins(:comments).group(:id).order('COUNT(comments.id) DESC')
+    end
+    
+    @posts = @posts.page(params[:page]).per(12)
   end
 
   def show

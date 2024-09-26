@@ -8,27 +8,51 @@
     </div>
   </div>
   <div class="row mt-5">
-    <div class="col">
+    <div class="col-md-4">
       <h5>早速あなたも投稿してみよう！</h5>
       <% if current_user && !current_user.guest? %>
         <p class="mt-3">新規投稿はこちら➡           <%= link_to "投稿する", new_post_path, class: "btn btn-primary"%></p>
       <% end %>
     </div>
-    <div class="col">
-      
+    <div class="col-md-5 offset-md-3">
+      <%= form_with model: @posts, url: posts_path, method: :get do |f| %>
+        <div class="row">
+          <div class="col-md-9 position-relative">
+            <%= label_tag :keyword, "キーワード", class: "form-label" %>
+              <div class="input-group">
+                <%= text_field_tag :keyword, params[:keyword], class: "form-control", placeholder: "タイトル検索" %>
+                <span class="input-group-text">
+                  <button type="submit" class="btn btn-link p-0">
+                    <i class="fas fa-search"></i>
+                  </button>
+                </span>
+              </div>
+          </div>
+        </div>
+      <% end %>
     </div>
   </div>
   <div class="row my-5">
     <div class="col">
       <h2 style="border-bottom: 2px solid gold; padding-bottom: 10px;">みんなの投稿</h2>
+      <div class="mb-3">
+        <strong>並び替え:</strong>
+        <%= link_to "新着順", posts_path(sort: 'newest'), class: "btn btn-link" %> |
+        <%= link_to "古い順", posts_path(sort: 'oldest'), class: "btn btn-link" %> |
+        <%= link_to "コメントが多い順", posts_path(sort: 'most_comments'), class: "btn btn-link" %>
+      </div>
     </div>
   </div>
   <div class="row mt-4">
     <% @posts.each do |post| %>
-      <div class="col-md-3 mb-4">
+      <div class="col-md-4 col-sm-6 col-lg-3 mb-4">
         <div class="card h-100" style="border: none; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);">
           <%= link_to post_path(post.id) do %>
-            <%= image_tag post.get_post_image(400, 250), class: 'card-img-top' %>
+            <% if post.post_image.attached? %>
+              <%= image_tag post.post_image.variant(gravity: :center, resize: "400x400^", crop: "400x400+0+0").processed, class: 'card-img-top' %>
+            <% else %>
+              <%= image_tag "no_image.jpg", class: "img-fluid" %>
+            <% end %>
           <% end %>
           <div class="card-body">
             <%= link_to user_path(post.user.id) do %>
@@ -41,6 +65,9 @@
               <h5 class="card-title" style="color: #333;"><%= post.title %></h5>
             <% end %>
             <p class="card-text" style="color: #666;"><%= simple_format(post.body.truncate(30)) %></p>
+            <p>
+              <small class="text-muted">コメント数: <%= post.comments.count %></small>
+            </p>
             <p class="card-text">
               <small class="text-muted">投稿日: <%= post.created_at.strftime("%Y-%m-%d") %></small>
             </p>
@@ -49,5 +76,7 @@
       </div>
     <% end %>
   </div>
-</div>
+  <div class="mb-5 d-flex justify-content-center">
+    <%= paginate @posts %>
+  </div>
 </div>
