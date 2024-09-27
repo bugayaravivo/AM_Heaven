@@ -13,7 +13,7 @@ class Public::WorksController < ApplicationController
     @work = Work.find(params[:id])
     @average_rating = @work.average_rating
     @spots = @work.spots
-    @reviews = @work.reviews
+    @reviews = @work.reviews.page(params[:page]).per(10) 
   end
   
   private

@@ -48,16 +48,20 @@
   <% if @posts.any? %>
     <% @posts.each do |post| %>
       <div class="col-md-4 mb-4">
-        <%= link_to post_path(post.id) do %>
           <div class="card h-100" style="border: none; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);">
-            <%= image_tag post.get_post_image(400, 250), class: 'card-img-top' %>
+            <%= link_to post_path(post.id) do %>
+              <% if post.post_image.attached? %>
+                <%= image_tag post.post_image.variant(gravity: :center, resize: "400x400^", crop: "400x400+0+0").processed, class: 'card-img-top' %>
+              <% else %>
+                <%= image_tag "no_image.jpg", class: "img-fluid" %>
+              <% end %>
+            <% end %>
             <div class="card-body">
               <h5 class="card-title" style="color: #333;"><%= post.title %></h5>
-              <p class="card-text" style="color: #666;"><%= post.body.truncate(100) %></p>
+              <p class="card-text" style="color: #666;"><%= simple_format(post.body.truncate(30)) %></p>
               <p class="card-text"><small class="text-muted">投稿日: <%= post.created_at.strftime("%Y-%m-%d") %></small></p>
             </div>
           </div>
-        <% end %>
       </div>
     <% end %>
   <% else %>

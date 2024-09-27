@@ -38,3 +38,64 @@
   </div>
 </section>
 
+<section id="user-highlights" class="py-5">
+  <div class="container">
+    <h2 class="highlights-title text-center">
+      みんなはこんな場所に行っています
+      <i class="fa-solid fa-person-walking"></i>
+    </h2>
+    <div class="row">
+      <% if @top_posts.any? %>
+        <% @top_posts.each do |post| %>
+        <div class="col-md-4 mt-3">
+          <div class="post-box">
+              <% if post.post_image.attached? %>
+                <%= image_tag post.post_image.variant(gravity: :center, resize: "400x400^", crop: "400x400+0+0").processed, class: 'card-img-top' %>
+              <% else %>
+                <%= image_tag "no_image.jpg", class: "img-fluid" %>
+              <% end %>
+            <h3><%= post.title %></h3>
+            <%= link_to "詳細", post_path(post.id), class: "btn btn-secondary" %>
+          </div>
+        </div>
+        <% end %>
+      <% else %>
+        <div class="col-12 text-center mt-3 my-">
+          <p style="font-size: 3rem; color: #666; font-weight: bold;">投稿はありません</p>
+        </div>
+      <% end %>
+    </div>
+  </div>
+</section>
+
+<section id="carouselSection" class="py-5">
+  <div class="container">
+    <h2 class=" carousel-title text-center mb-3">
+      <i class="fa-solid fa-star"></i>
+      人気の聖地
+      <i class="fa-solid fa-star"></i>
+      </h2>
+    <div id="spot-Carousel" class="carousel slide" data-ride="carousel">
+      <div class="carousel-inner">
+        <% @top_spots.each_with_index do |spot, index| %>
+          <div class="carousel-item <%= 'active' if index == 0 %>">
+            <%= image_tag spot.get_spot_image(400,400),  class: "d-block w-100" %>
+            <div class="carousel-caption d-none d-md-block">
+              <h5><%= spot.name %></h5>
+              <%= link_to "もっと見る", spot_path(spot.id), class: "btn btn-primary" %>
+            </div>
+          </div>
+        <% end %>
+      </div>
+      <a class="carousel-control-prev" href="#spot-Carousel" role="button" data-slide="prev">
+        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+        <span class="sr-only">Previous</span>
+      </a>
+      <a class="carousel-control-next" href="#spot-Carousel" role="button" data-slide="next">
+        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+        <span class="sr-only">Next</span>
+      </a>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+  </div>
+</section>

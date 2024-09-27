@@ -3,7 +3,7 @@ class Public::SpotsController < ApplicationController
 
   
   def index
-    @spots = Spot.all
+    @spots = Spot.page(params[:page]).per(4)
   
   # キーワード検索
     if params[:search].present?
@@ -19,7 +19,7 @@ class Public::SpotsController < ApplicationController
   def show
     @spot = Spot.find(params[:id])
     @average_rating = @spot.average_rating
-    @reviews = @spot.reviews
+    @reviews = @spot.reviews.page(params[:page]).per(10) 
   end
   
   private

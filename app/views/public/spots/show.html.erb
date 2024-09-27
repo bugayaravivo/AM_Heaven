@@ -112,6 +112,9 @@
           </li>
         <% end %>
       </ul>
+      <div class="mb-5 d-flex justify-content-center">
+        <%= paginate @reviews %>
+      </div>
       <script>
           // すべてのレビューの星評価要素を取得
           const reviewRatingElements = document.querySelectorAll('.review-rating-spot');

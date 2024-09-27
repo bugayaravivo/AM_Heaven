@@ -2,6 +2,7 @@ class Spot < ApplicationRecord
   validates :name, presence: true, length: {in: 1..50}
   validates :summary, presence: true, length: {in: 1..1000}
   validates :address, presence: true, length: {in: 1..100}
+  validates :spot_image, presence: true
   
   has_many :reviews, dependent: :destroy
   has_many :post_spots, dependent: :destroy

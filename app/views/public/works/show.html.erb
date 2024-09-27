@@ -41,11 +41,11 @@
       <p class="mt-4"><%= @work.summary %></p>
     </div>
     <div class="tab-pane fade" id="spots" role="tabpanel" aria-labelledby="spots-tab">
-      <div class="row mt-5 ml-5">
+      <div class="row my-5">
+        <% @spots.each do |spot| %>
         <div class="col-md-4">
-          <% @spots.each do |spot| %>
           <div class="card">
-            <%= image_tag spot.get_spot_image(300,200), class: "card-img-top" %>
+                <%= image_tag spot.spot_image.variant(gravity: :center, resize: "400x400^", crop: "400x400+0+0").processed, class: 'card-img-top' %>
             <div class="card-body">
               <h5 class="card-title"><%= spot.name %></h5>
               <div>
@@ -53,8 +53,8 @@
               </div>
             </div>
           </div>
-          <% end %>
         </div>
+        <% end %>
       </div>
     </div>
     <div class="tab-pane fade" id="reviews" role="tabpanel" aria-labelledby="review-tab">
@@ -130,6 +130,9 @@
           </li>
         <% end %>
       </ul>
+      <div class="mb-5 d-flex justify-content-center">
+        <%= paginate @reviews %>
+      </div>
       <script>
           // すべてのレビューの星評価要素を取得
           const reviewRatingElements = document.querySelectorAll('.review-rating');
