@@ -1,16 +1,9 @@
-<!-- app/views/public/homes/top.html.erb -->
-<%# content_for :stylesheets do %>
-  <%#= stylesheet_pack_tag 'homes', media: 'all', 'data-turbolinks-track': 'reload' %>
-<%# end %>
-<!-- app/views/public/homes/top.html.erb -->
-
-<!-- app/views/public/homes/top.html.erb -->
-
-<div class="hero-section text-center text-white d-flex justify-content-center align-items-center">
-  <div class="hero-content">
-    <h1 class="display-4">アニメ・マンガの聖地を発見しよう</h1>
+<div class="top-section text-center text-white d-flex justify-content-center align-items-center">
+  <div class="top-content">
+    <h1 class="display-4"><strong>AM_Heaven</strong></h1>
+    <p class="lead">アニメや漫画の聖地を発見し、</p>
     <p class="lead">お気に入りの作品の舞台となった現実の場所を探索しよう。</p>
-    <a href="#features" class="btn btn-primary btn-lg">詳しくはこちら</a>
+    <%= link_to "詳しくはこちら", about_path, class: "btn btn-primary btn-lg" %>
   </div>
 </div>
 
@@ -20,25 +13,89 @@
       <div class="col-md-4">
         <div class="feature-box">
           <i class="fas fa-map-marker-alt fa-3x mb-3"></i>
-          <h3>聖地を発見</h3>
-          <p>人気アニメやマンガに登場する場所を見つけよう。</p>
+          <h3>作品を見る</h3>
+          <p>人気アニメやマンガから聖地を見つけよう。</p>
+          <%= link_to "作品一覧", works_path, class: "btn btn-secondary btn-lg" %>
         </div>
       </div>
       <div class="col-md-4">
         <div class="feature-box">
           <i class="fas fa-star fa-3x mb-3"></i>
-          <h3>レビューを読む</h3>
-          <p>他のファンがこれらの聖地について何を語っているかを見てみよう。</p>
+          <h3>みんなの投稿を見る</h3>
+          <p>他のファンが聖地について何を語っているかを見てみよう。</p>
+          <%= link_to "一覧を見る", posts_path, class: "btn btn-secondary btn-lg" %>
         </div>
       </div>
       <div class="col-md-4">
         <div class="feature-box">
           <i class="fas fa-camera fa-3x mb-3"></i>
           <h3>体験を共有</h3>
-          <p>訪れた場所のレビューや写真を投稿しよう。</p>
+          <p>訪れた場所の口コミや感想、写真を投稿しよう。</p>
+          <%= link_to "投稿する", new_post_path, class: "btn btn-secondary btn-lg" %>
         </div>
       </div>
     </div>
   </div>
 </section>
 
+<section id="user-highlights" class="py-5">
+  <div class="container">
+    <h2 class="highlights-title text-center">
+      みんなはこんな場所に行っています
+      <i class="fa-solid fa-person-walking"></i>
+    </h2>
+    <div class="row">
+      <% if @top_posts.any? %>
+        <% @top_posts.each do |post| %>
+        <div class="col-md-4 mt-3">
+          <div class="post-box">
+              <% if post.post_image.attached? %>
+                <%= image_tag post.post_image.variant(gravity: :center, resize: "400x400^", crop: "400x400+0+0").processed, class: 'card-img-top' %>
+              <% else %>
+                <%= image_tag "no_image.jpg", class: "img-fluid" %>
+              <% end %>
+            <h3><%= post.title %></h3>
+            <%= link_to "詳細", post_path(post.id), class: "btn btn-secondary" %>
+          </div>
+        </div>
+        <% end %>
+      <% else %>
+        <div class="col-12 text-center mt-3 my-">
+          <p style="font-size: 3rem; color: #666; font-weight: bold;">投稿はありません</p>
+        </div>
+      <% end %>
+    </div>
+  </div>
+</section>
+
+<section id="carouselSection" class="py-5">
+  <div class="container">
+    <h2 class=" carousel-title text-center mb-3">
+      <i class="fa-solid fa-star"></i>
+      人気の聖地
+      <i class="fa-solid fa-star"></i>
+      </h2>
+    <div id="spot-Carousel" class="carousel slide" data-ride="carousel">
+      <div class="carousel-inner">
+        <% @top_spots.each_with_index do |spot, index| %>
+          <div class="carousel-item <%= 'active' if index == 0 %>">
+            <%= image_tag spot.get_spot_image(400,400),  class: "d-block w-100" %>
+            <div class="carousel-caption d-none d-md-block">
+              <h5><%= spot.name %></h5>
+              <%= link_to "もっと見る", spot_path(spot.id), class: "btn btn-primary" %>
+            </div>
+          </div>
+        <% end %>
+      </div>
+      <a class="carousel-control-prev" href="#spot-Carousel" role="button" data-slide="prev">
+        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+        <span class="sr-only">Previous</span>
+      </a>
+      <a class="carousel-control-next" href="#spot-Carousel" role="button" data-slide="next">
+        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+        <span class="sr-only">Next</span>
+      </a>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+  </div>
+</section>

@@ -1,2 +1,52 @@
-<h1>Public::Homes#about</h1>
-<p>Find me in app/views/public/homes/about.html.erb</p>
+<div class="about text-center text-white d-flex justify-content-center align-items-center">
+  <div class="about-content">
+    <h1 class="display-4">アニメ・マンガの聖地へようこそ！</h1>
+    <p class="lead">作品の舞台となった場所を探索し、ファンとの繋がりを楽しもう。</p>
+  </div>
+</div>
+<div class="container">
+  <div class="row my-5">
+    <div class="col-md-6">
+      <h2>このサイトについて</h2>
+      <p class="lead"><strong>「AM＿Heaven」</strong>は、アニメやマンガファンが愛する作品の舞台を現実で訪れ、その感動を共有するためのコミュニティサイトです。作品の背景にある実際の場所を探索し、他のファンとの交流を楽しんでください。</p>
+    </div>
+    <div class="col-md-6">
+      <%= image_tag 'about_saito.jpg', alt: '友人たちと聖地をめぐる写真', class: 'img-fluid' %>
+    </div>
+  </div>
+  <div class="row my-5 text-center">
+    <div class="col">
+      <h2>作者の思い</h2>
+      <p class="mb-0">
+        <strong>
+          「このサイトは、私が長年感じてきたアニメ・マンガの感動を、他のファンと分かち合いたいという思いから生まれました。<br>作品の舞台を訪れたときの感動を共有する場所が欲しかったのです。」
+        </strong>
+      </p>
+      <p>--サイト作者より</p>
+    </div>
+  </div>
+  <div class="row mb-5">
+    <div class="col">
+      <h2 class="text-center">ギャラリー</h2>
+    </div>
+  </div>
+  <div class="row mt-3">
+    <div class="col-md-4 mb-4">
+      <%= image_tag "about_gallery.jpg", class: "img-fluid", alt: "Gallery image 1" %>
+    </div>
+    <div class="col-md-4 mb-4">
+      <%= image_tag "about_gallery2.jpg", class: "img-fluid", alt: "Gallery image 2" %>
+    </div>
+    <div class="col-md-4 mb-4">
+      <%= image_tag "about_gallery3.jpg", class: "img-fluid", alt: "Gallery image 3" %>
+    </div>
+  </div>
+  <div class="row mb-5">
+    <div class="col">
+      <h2 class="my-5">さあ、聖地を共有してみましょう！</h2>
+      <div class="about-btn">
+        <%= link_to "今すぐ登録", new_user_registration_path, class: "btn btn-light btn-lg" %>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,29 +1,31 @@
 <div class="container">
-  <div class="row">
+  <div class="row mt-5">
     <div class="col">
       <h1>作品一覧</h1>
     </div>
   </div>
-  <div class="row">
-    <div class="col">
-      <%= link_to 'ア行', letter_works_path('ア') %> |
-      <%= link_to 'カ行', letter_works_path('カ') %> |
-      <%= link_to 'サ行', letter_works_path('サ') %> |
-      <%= link_to 'タ行', letter_works_path('タ') %> |
-      <%= link_to 'ナ行', letter_works_path('ナ') %> |
-      <%= link_to 'ハ行', letter_works_path('ハ') %> |
-      <%= link_to 'マ行', letter_works_path('マ') %> |
-      <%= link_to 'ヤ行', letter_works_path('ヤ') %> |
-      <%= link_to 'ラ行', letter_works_path('ラ') %> |
-      <%= link_to 'ワ行', letter_works_path('ワ') %> |
-      <%= link_to '全て', works_path %>
+  <div class="row mt-3">
+    <div class="col d-flex justify-content-center flex-wrap">
+      <% ['ア', 'カ', 'サ', 'タ', 'ナ', 'ハ', 'マ', 'ヤ', 'ラ', 'ワ'].each do |letter| %>
+        <%= link_to letter + '行', letter_works_path(letter), class: "alphabet-btn mx-2 my-1" %>
+      <% end %>
+      <%= link_to '全て', works_path, class: "alphabet-btn mx-2 my-1" %>
     </div>
   </div>
-  <div class="row mt-5">
+  <% if params[:letter] %>
+  <div class="row my-5">
+    <div class="col text-center">
+      <h3><%= params[:letter] %>行の検索結果</h3>
+    </div>
+  </div>
+  <% end %>
+  <div class="row my-5">
     <div class="col">
-      <ul class="d-flex flex-wrap">
+      <ul class="work-list d-flex flex-wrap">
         <% @works.each do |work| %>
-          <li class="my-3 mr-5"><%= link_to work.title, work_path(work.id), style: "color: black;" %></li>
+          <li class="work-item my-3 mr-5">
+            <%= link_to work.title, work_path(work.id), class: "work-title" %>
+          </li>
         <% end %>
       </ul>
     </div>

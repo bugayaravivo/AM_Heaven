@@ -1,2 +1,63 @@
-<h1>Admin::Reviews#index</h1>
-<p>Find me in app/views/admin/reviews/index.html.erb</p>
+<div class="container">
+  <h1 class="my-4">レビュー管理</h1>
+
+  <!-- 検索フォーム -->
+  <%= form_with url: admin_reviews_path, method: :get, local: true, class: "mb-4" do %>
+    <div class="row">
+      <div class="col-md-3">
+        <%= label_tag :keyword, "キーワード", class: "form-label" %>
+        <%= text_field_tag :keyword, params[:keyword], class: "form-control" %>
+      </div>
+      <div class="col-md-3">
+        <%= label_tag :work_id, "作品", class: "form-label" %>
+        <%= select_tag :work_id, options_from_collection_for_select(@works, :id, :title, params[:work_id]), include_blank: "すべて", class: "form-select" %>
+      </div>
+      <div class="col-md-3">
+        <%= label_tag :spot_id, "スポット", class: "form-label" %>
+        <%= select_tag :spot_id, options_from_collection_for_select(@spots, :id, :name, params[:spot_id]), include_blank: "すべて", class: "form-select", rows: 45 %>
+      </div>
+      <div class="col-md-2 offset-md-1 align-self-end">
+        <%= submit_tag "検索", class: "btn btn-primary w-100" %>
+      </div>
+    </div>
+  <% end %>
+
+  <!-- レビュー一覧 -->
+  <table class="table table-striped mb-5">
+    <thead class="table-dark">
+      <tr>
+        <th scope="col">ID</th>
+        <th scope="col">タイトル</th>
+        <th scope="col">ユーザー</th>
+        <th scope="col">作品/スポット</th>
+        <th scope="col">評価</th>
+        <th scope="col">作成日時</th>
+        <th scope="col">アクション</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @reviews.each do |review| %>
+        <tr>
+          <td><%= review.id %></td>
+          <td><%= review.title %></td>
+          <td><%= review.user.name %></td>
+          <td>
+            <% if review.work %>
+              <%= link_to review.work.title, admin_work_path(review.work_id), class: "text-decoration-none" %>
+            <% elsif review.spot %>
+              <%= link_to review.spot.name, admin_spot_path(review.spot_id), class: "text-decoration-none" %>
+            <% end %>
+          </td>
+          <td>☆<%= review.rating %></td>
+          <td><%= review.created_at.strftime("%Y-%m-%d %H:%M") %></td>
+          <td>
+            <%= link_to '詳細', admin_review_path(review), class: "btn btn-info btn-sm" %>
+            <%= link_to '削除', admin_review_path(review), method: :delete, data: { confirm: '本当に削除しますか？' }, class: "btn btn-danger btn-sm" %>
+          </td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+
+  <%= paginate @reviews %>
+</div>

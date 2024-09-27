@@ -5,3 +5,82 @@
   height: 350px;
 }
 
+// work詳細のタブの色
+.nav-link {
+  color: black;
+}
+
+// 全ページ
+.main-body {
+  background-color: #ffefd5;
+}
+
+// スポットの一覧
+.list-group-prefecture {
+  margin: 0;
+  padding-left: 0;
+}
+
+.list-group-item-prefecture {
+  border: none;
+  background-color: #f8f9fa;
+  transition: background-color 0.3s ease;
+}
+
+.list-group-item-prefecture:hover {
+  background-color: black;
+  color: #000;
+}
+
+.list-group-item-prefecture i {
+  color: #ff0000;
+}
+
+.text-decoration-none-prefecture:hover {
+  text-decoration: none;
+  font-weight: bold;
+  color: gold;
+}
+
+// 作品一覧
+.alphabet-btn {
+  border: 2px solid #000;
+  padding: 10px 20px;
+  font-size: 1.2rem;
+  font-weight: bold;
+  background-color: #f8f9fa;
+  text-decoration: none;
+  color: #000;
+  transition: background-color 0.3s, color 0.3s;
+}
+
+.alphabet-btn:hover {
+  background-color: #000;
+  color: gold;
+}
+
+.work-title {
+  font-size: 1.5rem;
+  font-weight: bold;
+  color: #333;
+  text-decoration: none;
+  padding: 10px 15px;
+  border: 2px solid transparent;
+  transition: color 0.3s, border-color 0.5s, transform 0.5s, background-color 0.5s;
+}
+
+.work-title:hover {
+  color: #ffd700;
+  border-color: #ffd700;
+  background-color: #000000;
+  transform: scale(1.05);
+  text-decoration: underline;  
+}
+
+.work-list {
+  padding: 0;
+}
+
+.work-item {
+  margin-bottom: 20px;
+}

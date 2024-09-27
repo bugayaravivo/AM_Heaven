@@ -5,18 +5,15 @@ class Public::CommentsController < ApplicationController
     @post = Post.find(params[:post_id])
     @comment = current_user.comments.new(comment_params)
     @comment.post_id = @post.id
+    @comments = @post.comments.order(created_at: :desc)
     
-    if @comment.save
-      redirect_to post_path(@post.id), notice: "コメントを作成しました"
-    else
-      redirect_to post_path(@post.id), alert: "コメントを作成に失敗しました"
-    end 
+    @comment.save
   end 
   
   def destroy
     @comment = Comment.find(params[:id])
     @comment.destroy
-    redirect_to post_path(@comment.post_id), notice: "コメントを削除しました"
+    @comments = @comment.post.comments.order(created_at: :desc)
   end 
   
   private

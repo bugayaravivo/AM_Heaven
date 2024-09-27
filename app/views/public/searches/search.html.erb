@@ -1,0 +1,51 @@
+<div class="container">
+  <div class="row text-center mt-5">
+    <div class="col">
+      <h2 style="font-size: 2.5rem; font-weight: bold; color: #333;">検索結果</h2>
+    </div>
+  </div>
+  <% if @users.any? %>
+    <div class="row my-5">
+      <div class="col">
+        <table class="table table-striped">
+          <thead class="table-dark">
+            <tr>
+              <th scope="col">会員ID</th>
+              <th scope="col">名前</th>
+              <th scope="col">投稿数</th>
+              <th scope="col">ステータス</th>
+            </tr>
+          </thead>
+          <% @users.each do |user| %>
+            <tbody>
+            <tr>
+              <td><%= user.id %></td>
+              <td>
+                <%= link_to user_path(user.id), class: "text-dark" do %>
+                  <%= image_tag user.get_user_image(50,50), style: "border-radius: 50%;", width: 50, height: 50 %>
+                  <%= user.name %>
+                <% end %>
+              </td>
+              <td><%= user.posts.count %>投稿</td>
+              <td>
+                <% if user.user_status == "有効" %>
+                  <span style="color: green"><%= user.user_status %></span>
+                <% else %>
+                  <span style="color: red"><%= user.user_status %></span>
+                <% end %>
+              </td>
+            </tr>
+            </tbody>
+          <% end %>
+        </table>
+      </div>
+    </div>
+  <% else %>
+  <div class="row my-5 text-center">
+    <div class="col">
+      <p style="font-size: 1.8rem; color: #666;">該当するユーザーは見つかりませんでした。</p>
+      <%= image_tag('sorry.jpg', width: 500, height: 300)%>
+    </div>
+  </div>
+  <% end %>
+</div>

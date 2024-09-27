@@ -4,16 +4,16 @@
 // that code so it'll be compiled.
 
 import Rails from "@rails/ujs"
-import Turbolinks from "turbolinks"
+// import Turbolinks from "turbolinks"
 import * as ActiveStorage from "@rails/activestorage"
 import "channels"
 
 import "jquery";
 import "popper.js";
 import "bootstrap";
-import "../stylesheets/application"; 
+import "../stylesheets/application";
 import "../stylesheets/_header";
-import "../stylesheets/homes"; 
+import "../stylesheets/homes";
 // 評価
 import Raty from "raty.js"
 window.raty = function(elem,opt) {
@@ -23,5 +23,5 @@ window.raty = function(elem,opt) {
 }
 
 Rails.start()
-Turbolinks.start()
+// Turbolinks.start()
 ActiveStorage.start()

@@ -1,6 +1,7 @@
 .header {
   background-color: black;
   padding: 20px 0;
+   position: relative;
 }
 
 
@@ -13,6 +14,7 @@
   padding-left: 15px;
   margin-right: auto;
   margin-left: auto;
+   position: relative;
 }
 
 
@@ -23,7 +25,10 @@
   text-decoration: none;
 }
 
-
+.login {
+  color: gold;
+  margin-top: 8px;
+}
 
 .navbar {
   position: relative;
@@ -45,7 +50,7 @@
 
 .menu li {
   margin-left: 20px;
-  
+
 }
 
 .menu a {
@@ -59,4 +64,25 @@
   display: none;
 }
 
+.search-form {
+ display: flex;
+ justify-content: end;
+ margin-right: 90px;
+}
 
+.main-footer {
+  background-color: black;
+  color: gold;
+  padding: 20px 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.footer-container {
+  text-align: center;
+}
+
+.footer-container p {
+  margin: 5px 0;
+}

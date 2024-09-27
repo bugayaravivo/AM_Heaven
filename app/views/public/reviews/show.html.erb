@@ -1,2 +1,35 @@
-<h1>Public::Reviews#show</h1>
-<p>Find me in app/views/public/reviews/show.html.erb</p>
+<div class="container my-4">
+  <h1 class="mb-4">レビュー詳細</h1>
+
+  <div class="card">
+    <div class="card-body">
+      <h5 class="card-title"><strong>タイトル:</strong> <%= @review.title %></h5>
+      <p class="card-text"><strong>本文:</strong> <%= @review.body %></p>
+      <p class="card-text"><strong>評価:</strong> ☆<%= @review.rating %></p>
+      <p class="card-text"><strong>ユーザー:</strong> <%= link_to @review.user.name, admin_user_path(@review.user), class: "text-decoration-none" %></p>
+      <p class="card-text"><strong>関連作品/スポット:</strong> 
+        <% if @review.work %>
+          <%= link_to @review.work.title, admin_work_path(@review.work), class: "text-decoration-none" %>
+        <% elsif @review.spot %>
+          <%= link_to @review.spot.name, admin_spot_path(@review.spot), class: "text-decoration-none" %>
+        <% end %>
+      </p>
+      <p class="card-text"><strong>作成日時:</strong> <%= @review.created_at.strftime("%Y-%m-%d %H:%M") %></p>
+      <p class="card-text"><strong>更新日時:</strong> <%= @review.updated_at.strftime("%Y-%m-%d %H:%M") %></p>
+
+      <!-- アクションボタン -->
+      <div class="mt-4">
+        <% if @review.work %>
+          <%= link_to '前のページに戻る', work_path(@review.work_id), class: "btn btn-secondary" %>
+        <% elsif @review.spot %>
+          <%= link_to '前のページに戻る', spot_path(@review.spot_id), class: "btn btn-secondary" %>
+        <% else %>
+        <% end %>
+        <% if @review.user_id == current_user.id %>
+          <%= link_to '削除', review_path(@review.id), method: :delete, data: { confirm: '本当に削除しますか？' }, class: "btn btn-danger" %>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>
+

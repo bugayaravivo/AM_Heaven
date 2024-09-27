@@ -30,7 +30,7 @@
           </div>
           <h5 class="card-title mt-3" style="color: #555;">プロフィール</h5>
           <div class="card-text">
-            <%= @user.introduction %>
+            <%= simple_format(@user.introduction) %>
           </div>
         </div>
       </div>

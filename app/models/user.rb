@@ -4,7 +4,8 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
   
-  validates :name, presence: true, length: {in: 1..50}
+  validates :name, presence: true, length: {in: 1..50, message: 'は1〜50文字。'}
+  validates :name, length: {in: 1..500, message: 'は1〜500文字。'}
   
   has_many :posts, dependent: :destroy
   has_many :comments, dependent: :destroy

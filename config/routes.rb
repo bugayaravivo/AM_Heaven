@@ -24,8 +24,8 @@ Rails.application.routes.draw do
     resources :spots, only: [:index, :show] do
       resources :reviews, only: [:new, :create]
     end
-    #コメント
-   
+    #検索
+   get "search" => "searches#search"
     #レビュー
     resources :reviews, only: [:show, :edit, :update, :destroy]
   end

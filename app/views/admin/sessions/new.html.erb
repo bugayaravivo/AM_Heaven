@@ -4,18 +4,6 @@
       <h2>管理者ログイン</h2>
     </div>
     <div class="card-body">
-      <!--エラーメッセージ-->
-       <% if flash[:alert].present? %>
-        <div class="alert alert-danger" style="border-radius: 10px;">
-          <%= flash[:alert] %>
-        </div>
-      <% end %>
-      <% if flash[:notice].present? %>
-        <div class="alert alert-success" style="border-radius: 10px;">
-          <%= flash[:notice] %>
-        </div>
-      <% end %>
-      
       <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
         <div class="form-group">
           <%= f.label "メールアドレス" %>

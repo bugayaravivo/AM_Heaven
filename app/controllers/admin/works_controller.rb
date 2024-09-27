@@ -3,7 +3,7 @@ class Admin::WorksController < ApplicationController
 
   def index
     @work = Work.new
-    @works = Work.all
+    @works = Work.page(params[:page]).per(4)
   end
   
   def create

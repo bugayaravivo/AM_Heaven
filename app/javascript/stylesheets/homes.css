@@ -4,14 +4,30 @@
 
  app/javascript/stylesheets/homes.css */
 
-.hero-section {
+/* セクション全体のスタイル */
+section {
+  border: 1px solid #ddd;
+  border-radius: 10px;
+  padding: 20px;
+  margin-bottom: 20px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+/* タイトルのスタイル */
+section h2 {
+  border-bottom: 2px solid #ddd; /* タイトル下に線を引く */
+  padding-bottom: 10px; /* タイトル下の余白 */
+  margin-bottom: 20px; /* タイトルとコンテンツの間の余白 */
+}
+
+.top-section {
   height: 100vh;
-  background-image: url("../images/heaven.jpg"); /* ヒーローセクションの背景画像を設定 */
+  background-image: url("../images/heaven.jpg");
   background-size: cover;
   background-position: center;
 }
 
-.hero-content {
+.top-content {
   background-color: rgba(0, 0, 0, 0.5); /* 背景を暗くするためのオーバーレイ */
   padding: 20px;
   border-radius: 10px;
@@ -24,4 +40,64 @@
 
 .feature-box i {
   color: #007bff;
+}
+
+.highlights-title i {
+  color: #007bff;
+}
+
+#carouselSection {
+  padding: 40px 0;
+}
+
+.carousel-item img {
+  max-height: 400px;
+  object-fit: cover;
+  width: 90%;
+  margin: 0 auto;
+}
+
+.carousel-caption {
+  background-color: rgba(0, 0, 0, 0.5);
+  padding: 20px;
+  border-radius: 10px;
+  text-align: center;
+}
+
+.carousel-title i {
+  color: #007bff;
+}
+
+.about {
+  height: 80vh;
+  background-image: url("../images/about_top.jpg");
+  background-size: cover;
+  background-position: center;
+}
+
+.about-content {
+  background-color: rgba(0, 0, 0, 0.5);
+  padding: 20px;
+  border-radius: 10px;
+}
+
+.container h2 {
+  border-bottom: 2px solid #ddd;
+  padding-bottom: 10px;
+  margin-bottom: 20px;
+}
+
+.about-btn .btn {
+  padding: 15px 30px;
+  font-size: 1.25rem;
+  border-radius: 5px;
+  background-color: #000000;
+  border: none;
+  color: #ffd700;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  transition: background-color 0.3s ease;
+}
+
+.about-btn .btn:hover {
+  background-color: #ff9900;
 }
