@@ -11,7 +11,8 @@ class Admin::SpotsController < ApplicationController
     if @spot.save
       redirect_to admin_spots_path
     else
-      render index
+      @spots = Spot.page(params[:page]).per(4)
+      render :index
     end 
   end 
 
@@ -28,7 +29,7 @@ class Admin::SpotsController < ApplicationController
     if @spot.update(spot_params)
       redirect_to admin_spot_path(@spot.id)
     else
-      render edit
+      render :edit
     end 
   end 
   
