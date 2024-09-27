@@ -11,7 +11,8 @@ class Admin::WorksController < ApplicationController
     if @work.save
       redirect_to admin_works_path
     else
-      render index
+      @works = Work.page(params[:page]).per(4)
+      render :index
     end 
   end 
 
@@ -28,7 +29,7 @@ class Admin::WorksController < ApplicationController
     if @work.update(work_params)
       redirect_to admin_work_path(@work.id)
     else
-      render edit
+      render :edit
     end 
   end 
   
