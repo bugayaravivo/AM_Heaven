@@ -1,7 +1,7 @@
 class Work < ApplicationRecord
   
   validates :title, presence: true, length: {in: 1..50}
-  validates :title_yomi, presence: true, length: {in: 1..50}
+  validates :title_yomi, presence: true, length: { in: 1..50 }, format: { with: /\A[ァ-ヶー]+\z/, message: 'はカタカナのみで入力してください' }
   validates :genre, presence: true, length: {in: 1..100}
   validates :summary, presence: true, length: {in: 1..1000}
   
