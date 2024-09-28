@@ -74,7 +74,7 @@
   border-color: #ffd700;
   background-color: #000000;
   transform: scale(1.05);
-  text-decoration: underline;  
+  text-decoration: underline;
 }
 
 .work-list {
@@ -83,4 +83,14 @@
 
 .work-item {
   margin-bottom: 20px;
+}
+
+.show-picture {
+  max-width: 600px;
+}
+
+@media screen and (max-width:780px) {
+  .show-picture {
+    max-width: 100%;
+  }
 }
