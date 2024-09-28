@@ -6,22 +6,28 @@
     <div class="row">
       <div class="col-md-4">
         <%= label_tag :keyword, "キーワード", class: "form-label" %>
-        <%= text_field_tag :keyword, params[:keyword], class: "form-control" %>
       </div>
-    </div>
-    <div class="row mt-4">
       <div class="col-md-4">
         <%= label_tag :work_id, "作品名：", class: "form-label" %>
+      </div>
+       <div class="col-md-4">
+        <%= label_tag :spot_id, "聖地名：", class: "form-label" %>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-4">
+        <%= text_field_tag :keyword, params[:keyword], class: "form-control" %>
+      </div>
+      <div class="col-md-4">
         <%= select_tag :work_id, options_from_collection_for_select(@works, :id, :title, params[:work_id]), include_blank: "すべて", class: "form-select" %>
+      </div>
+      <div class="col-md-4">
+        <%= select_tag :spot_id, options_from_collection_for_select(@spots, :id, :name, params[:spot_id]), include_blank: "すべて", class: "form-select", rows: 45 %>
       </div>
     </div>
     <div class="row mt-4">
-      <div class="col-md-4">
-        <%= label_tag :spot_id, "聖地名：", class: "form-label" %>
-        <%= select_tag :spot_id, options_from_collection_for_select(@spots, :id, :name, params[:spot_id]), include_blank: "すべて", class: "form-select", rows: 45 %>
-      </div>
-      <div class="col-md-2">
-        <%= submit_tag "検索", class: "btn btn-primary w-100" %>
+      <div class="col d-flex justify-content-end mr-5">
+        <%= submit_tag "検索", class: "btn btn-primary" %>
       </div>
     </div>
   <% end %>

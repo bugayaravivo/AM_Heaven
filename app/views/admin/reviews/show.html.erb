@@ -5,7 +5,7 @@
     <div class="card-body">
       <h5 class="card-title"><strong>タイトル:</strong> <%= @review.title %></h5>
       <p class="card-text"><strong>本文:</strong> <%= @review.body %></p>
-      <p class="card-text"><strong>評価:</strong> <%= @review.rating %> 星</p>
+      <p class="card-text"><strong>評価:</strong> ☆<%= @review.rating %></p>
       <p class="card-text"><strong>ユーザー:</strong> <%= link_to @review.user.name, admin_user_path(@review.user), class: "text-decoration-none" %></p>
       <p class="card-text"><strong>関連作品/スポット:</strong> 
         <% if @review.work %>
