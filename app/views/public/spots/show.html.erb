@@ -67,9 +67,9 @@
               window.raty(averageRatingElement, {
                 readOnly: true, // 読み取り専用にする
                 score: averageRating, // 平均評価のスコアを表示
-                starOn: '/assets/star-on.png',
-                starOff: '/assets/star-off.png',
-                starHalf: '/assets/star-half.png',
+                starOn: "<%= asset_path('star-on.png') %>",
+                starOff: "<%= asset_path('star-off.png') %>",
+                starHalf: "<%= asset_path('star-half.png') %>",
                 number: 5,
                 halfShow: true // 小数点の評価を表示
               });
@@ -124,9 +124,9 @@
             window.raty(element, {
               readOnly: true, // 読み取り専用
               score: score,
-              starOn: '/assets/star-on.png',
-              starOff: '/assets/star-off.png',
-              starHalf: '/assets/star-half.png',
+              starOn: "<%= asset_path('star-on.png') %>",
+              starOff: "<%= asset_path('star-off.png') %>",
+              starHalf: "<%= asset_path('star-half.png') %>",
               number: 5, // 星の数
               halfShow: true // 小数点の評価も表示
             });
