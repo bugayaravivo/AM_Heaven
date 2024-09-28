@@ -2,19 +2,16 @@ class Admin::UsersController < ApplicationController
   before_action :authenticate_admin!
   
   def index
+    @users = User.all
     if params[:keyword].present?
-      @users = User.where("name like ?", "%#{params[:keyword]}%" )
-    else
-      @users = User.all
+      @users = @users.where("name like ?", "%#{params[:keyword]}%" )
     end 
     
     if params[:is_active].present?
-      @users = User.where(is_active: params[:is_active] == "true")
-    else
-      @users = User.all
+      @users = @users.where(is_active: params[:is_active] == "true")
     end 
     
-    @users = User.page(params[:page]).per(10)
+    @users = @users.page(params[:page]).per(10)
   end
 
   def show
