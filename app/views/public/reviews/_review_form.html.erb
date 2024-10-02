@@ -1,13 +1,13 @@
 <div class="row my-5">
   <div class="col-md-4 offset-md-3">
     <%= f.label :title, "タイトル" %>
-    <%= f.text_field :title, size: 65, placeholder: "タイトルを入力　※必須ではありません" %>
+    <%= f.text_field :title, size: 65, placeholder: "タイトルを入力" %>
   </div>
 </div>
 <div class="row">
   <div class="col-md-4 offset-md-3">
     <div id="rating">
-      <lavel>評価：</lavel>
+      <label>評価：</label>
     </div>
     <script>
       let elem = document.querySelector('#rating');
@@ -24,7 +24,7 @@
 <div class="row my-5">
   <div class="col-md-4 offset-md-3">
     <%= f.label :body, "レビュー本文" %>
-    <%= f.text_area :body, placeholder: "感想や評価を書いてみよう　※必須ではありません", rows: 10, cols: 70 %>
+    <%= f.text_area :body, placeholder: "感想や評価を書いてみよう", rows: 10, cols: 70 %>
   </div>
 </div>
 <div class="row">

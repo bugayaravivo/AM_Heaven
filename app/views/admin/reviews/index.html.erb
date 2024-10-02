@@ -41,6 +41,7 @@
         <th scope="col">ユーザー</th>
         <th scope="col">作品/スポット</th>
         <th scope="col">評価</th>
+        <th scope="col">感情スコア</th>
         <th scope="col">作成日時</th>
         <th scope="col">アクション</th>
       </tr>
@@ -59,6 +60,7 @@
             <% end %>
           </td>
           <td>☆<%= review.rating %></td>
+          <td><%= review.score %></td>
           <td><%= review.created_at.strftime("%Y-%m-%d %H:%M") %></td>
           <td>
             <%= link_to '詳細', admin_review_path(review), class: "btn btn-info btn-sm" %>
