@@ -13,7 +13,7 @@ class Public::WorksController < ApplicationController
     @work = Work.find(params[:id])
     @average_rating = @work.average_rating
     @spots = @work.spots
-    @reviews = @work.reviews.page(params[:page]).per(10) 
+    @reviews = @work.reviews.where('user_id = ? OR score > ?', current_user.id, -0.5).page(params[:page]).per(10) 
   end
   
   private
