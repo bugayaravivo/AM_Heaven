@@ -5,8 +5,14 @@
         <%= image_tag comment.user.get_user_image(50, 50), class: 'rounded-circle mr-3', width: 50, height: 50 %>
         <h5><%= comment.user.name %></h5>
       </div>
-      <p class="mt-3"><%= simple_format(comment.body) %></p>
-      <p class="text-muted text-right"><%= comment.created_at.strftime("%Y-%m-%d %H:%M") %></p>
+      <% if comment.score && comment.score < -0.5 %>
+        <p class="text-danger mt-3">
+          不適切なコメントです。トラブル回避のため、不要な場合は削除することを推奨します。<br>管理者が不適切と判断した場合、コメントを削除させていただくことがあります。
+        </p>
+      <% else %>
+        <p class="mt-3"><%= simple_format(comment.body) %></p>
+      <% end %>
+        <p class="text-muted text-right"><%= comment.created_at.strftime("%Y-%m-%d %H:%M") %></p>
        <% if comment.user == current_user %>
           <%= link_to "削除", post_comment_path(comment.post_id, comment.id), method: :delete, data: { confirm: "本当に削除しますか？" }, class: "btn btn-danger btn-sm", remote: true, data: {"turbolinks" => false} %>
         <% end %>

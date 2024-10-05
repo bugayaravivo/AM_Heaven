@@ -59,10 +59,13 @@
               <%= image_tag "no_image.jpg", class: "img-fluid" %>
             <% end %>
           <% end %>
-          <div class="card-body">
+          <div class="card-body d-flex flex-column">
             <h5 class="card-title" style="color: #333;"><%= post.title %></h5>
             <p class="card-text" style="color: #666;"><%= post.body.truncate(100) %></p>
-            <p class="card-text"><small class="text-muted">投稿日: <%= post.created_at.strftime("%Y-%m-%d") %></small></p>
+            <div class="mt-auto">
+              <p class="card-text"><small class="text-muted">投稿日: <%= post.created_at.strftime("%Y-%m-%d") %></small></p>
+              <%= link_to "削除", admin_post_path(post.id), method: :delete, data: { confirm: "本当に削除しますか？" }, class: "btn btn-danger" %>
+            </div>
           </div>
         </div>
       </div>
