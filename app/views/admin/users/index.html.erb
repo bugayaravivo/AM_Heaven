@@ -32,6 +32,8 @@
             <th scope="col">会員ID</th>
             <th scope="col">名前</th>
             <th scope="col">メールアドレス</th>
+            <th scope="col">レビュー数</th>
+            <th scope="col">コメント数</th>
             <th scope="col">ステータス</th>
           </tr>
         </thead>
@@ -46,6 +48,8 @@
               <% end %>
             </td>
             <td><%= user.email %></td>
+            <td><%= user.reviews.count %></td>
+            <td><%= user.comments.count %></td>
             <td>
               <% if user.user_status == "有効" %>
                 <span style="color: green"><%= user.user_status %></span>

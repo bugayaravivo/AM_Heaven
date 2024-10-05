@@ -29,7 +29,6 @@ class Public::ReviewsController < ApplicationController
 
     if @review.save
       if @review.work_id.present?
-       logger.debug("レビュー保存に失敗: #{@review.errors.full_messages}")
         redirect_to work_path(@review.work_id), notice: "レビューの投稿に成功しました"
       elsif @review.spot_id.present?
         redirect_to spot_path(@review.spot_id), notice: "レビューの投稿に成功しました"

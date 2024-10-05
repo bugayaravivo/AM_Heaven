@@ -31,10 +31,16 @@ Rails.application.routes.draw do
   end
 
   namespace :admin do
-    resources :users, only: [:index, :show, :edit, :update]
+    resources :users, only: [:index, :show, :edit, :update] do 
+      member do
+        delete 'comments/destroy_all', to: 'comments#destroy_all', as: 'destroy_all'
+      end
+      resources :comments, only: [:index, :destroy]
+    end 
     resources :works, only: [:index, :show, :create, :edit, :update, :destroy]
     resources :spots, only: [:index, :show, :create, :edit, :update, :destroy]
     resources :reviews, only: [:index, :show, :destroy]
+    resources :posts, only: [:destroy]
   end
 
   # 顧客用

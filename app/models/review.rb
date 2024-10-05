@@ -10,6 +10,10 @@ class Review < ApplicationRecord
   validate :unique_review
   
   private
+  
+   # 他のユーザーに表示されるレビューのスコープ
+  scope :visible_to_others, -> { where('score > ?', -0.5) }
+  
   # カスタムバリデーションメソッド
   def work_or_spot_present
     if work_id.blank? && spot_id.blank?

@@ -19,7 +19,7 @@ class Public::SpotsController < ApplicationController
   def show
     @spot = Spot.find(params[:id])
     @average_rating = @spot.average_rating
-    @reviews = @spot.reviews.page(params[:page]).per(10) 
+    @reviews = @spot.reviews.where('user_id = ? OR score > ?', current_user.id, -0.5).page(params[:page]).per(10) 
   end
   
   private
