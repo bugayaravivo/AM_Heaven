@@ -28,5 +28,10 @@
 - IDE：Cloud9
 ​
 ## 使用素材
-著作権を考慮し、架空のデータを扱う予定です。
+- 著作権を考慮し、架空のデータを扱う予定です。
 なお今後、実在するデータを利用する際には、事前に著作権保持者と契約を結んだ上で利用します。
+- フリーイラスト素材として以下を使用
+  - PAKUTASO https://www.pakutaso.com/
+  - Pexels https://www.pexels.com/ja-jp/
+  - photoAC https://www.photo-ac.com/
+  - Microsoft Designer https://designer.microsoft.com/image-creator
