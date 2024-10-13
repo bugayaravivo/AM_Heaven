@@ -1,26 +1,15 @@
 <div class="container">
-  <div class="row mt-3">
-    <div class="col">
-      <h2>作品の詳細</h2>
-    </div>
-  </div>
   <div class="row mt-5">
     <div class="col">
-      <h4><%= @work.title %></h4>
+      <h2><strong><%= @work.title %></strong></h2>
     </div>
   </div>
-  <div class="row mt-5">
-    <div class="col d-flex justify-content-center">
-      <h4><%= image_tag @work.get_work_image(400,300) %></h4>
+  <!--画像-->
+  <div class="row mt-5 mb-3">
+    <div class="col">
+      <%= image_tag @work.get_work_image(500,300) %>
     </div>
   </div>
-
-<!--タブの高さを調節するための記述-->
-  <style>
-    .tab-content {
-      min-height: 400px;
-    }
-  </style>
 
 <!--タブ-->
   <ul class="nav nav-tabs" id="mytab" role="tablist">
