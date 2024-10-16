@@ -8,7 +8,7 @@ class Public::RegistrationsController < Devise::RegistrationsController
   end 
   
   def after_sign_up_path_for(resources)
-    new_user_session_path
+    root_path
   end 
   
   # before_action :configure_sign_up_params, only: [:create]
