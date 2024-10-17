@@ -14,12 +14,12 @@ class Public::SessionsController < Devise::SessionsController
   def guest_sign_in
     user = User.guest
     sign_in user
-    redirect_to root_path, notice: "guestuserでログインしました"
+    redirect_to root_path, notice: "ゲストユーザーでログインしました"
   end
 
   def reject_user
     @user = User.find_by(email: params[:user][:email])
-    if  @user
+    if @user
       if @user.valid_password?(params[:user][:password]) && @user.is_active == false
         flash[:alert] = "退会しています。再度登録をしてご利用下さい。"
         redirect_to new_user_registration_path
