@@ -27,7 +27,7 @@
       <% if @post.user == current_user %>
       <div>
         <%= link_to "編集", edit_post_path(@post.id), class: "btn btn-success" %>
-        <%= link_to "削除", post_path(@post.id), method: :delete, date: { confirm: "本当に削除しますか？"}, class: "btn btn-danger" %>
+        <%= link_to "削除", post_path(@post.id), method: :delete, data: { confirm: "本当に投稿を削除しますか？"}, class: "btn btn-danger" %>
       </div>
       <% end %>
     </div>

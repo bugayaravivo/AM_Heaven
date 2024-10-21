@@ -112,7 +112,7 @@
               <div class="col d-flex justify-content-end">
                 <%= link_to "詳細を見る", review_path(review.id), class: "btn btn-secondary btn-sm mr-3" %>
                 <% if review.user == current_user %>
-                  <%= link_to "削除", review_path(review.id), method: :delete, class:"btn btn-danger btn-sm" %>
+                  <%= link_to "削除", review_path(review.id), method: :delete, data: { confirm: "本当にレビューを削除しますか？" }, class:"btn btn-danger btn-sm" %>
                 <% end %>
               </div>
             </div>
