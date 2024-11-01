@@ -18,7 +18,9 @@
 * 他の人が行ったその場所の感想や評価を知りたい時
 ​
 ## 設計書
-​後ほど作成予定
+- ER図    https://app.diagrams.net/#G1tM0tQBReT4IzP7_d1OxwK4-hrkPNoCAv#%7B%22pageId%22%3A%22LkA-50vI9zVlM_wPANrl%22%7D
+- UIFlows https://app.diagrams.net/#G1LyzIWgvawdO2NF0hi_tIc1F_m3jM2BvJ#%7B%22pageId%22%3A%2248jVFMlgaSScSIEwnXbb%22%7D
+- テーブル定義書 https://docs.google.com/spreadsheets/d/1Y3JO_VT27VkoV3WjyaIWSQopr1W8EW9b8gJNgNqMef0/edit?gid=1044500859#gid=1044500859
 
 ## 開発環境
 - OS：Linux(CentOS)
